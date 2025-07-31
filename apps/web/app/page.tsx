@@ -1,22 +1,6 @@
-import css from './homepage.module.css';
-import { Cinzel, Open_Sans } from 'next/font/google';
-import backgroundImage from './images/homepage-background.png';
-
-import { auth, signIn } from '@/auth';
+import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
 
-const cinzel = Cinzel({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-});
-
-const openSans = Open_Sans({
-  weight: ['300', '400', '600'],
-  subsets: ['latin'],
-  display: 'swap',
-});
-
- 
 export default async function HomePage() {
   // Check auth on page load and redirect if authed
   const session = await auth();
@@ -25,93 +9,123 @@ export default async function HomePage() {
     redirect(rankCalculatorUrl);
   }
 
-  const handleSubmit = async () => {
-    'use server';
-
-    const session = await auth();
-    const rankCalculatorUrl = '/rank-calculator';
-
-    if (!session) {
-      await signIn('discord', { redirectTo: rankCalculatorUrl });
-    }
-
-    redirect(rankCalculatorUrl);
-  };
-
+  // Note: Head elements should be placed in layout.tsx or a Client Component using next/head
   return (
     <div
-      className={`${css['outer-container']} ${cinzel.className} ${openSans.className}`}
       style={{
-        backgroundImage: `url(${backgroundImage.src})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
+        margin: 0,
+        backgroundColor: '#0f0f1a',
+        color: '#e0e0ff',
+        fontFamily: "'Orbitron', sans-serif",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        minHeight: '100vh',
+        height: '100vh',
+        boxSizing: 'border-box',
+        padding: 0,
       }}
     >
-      <div className={css.container}>
-        <h1 className={css['heading-1']}>Welcome to Irons Grotto</h1>
-        <p className={css.paragraph}>
-          A thriving Old School RuneScape community for Ironman accounts.
-        </p>
+      <div style={{ flex: 1, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <header style={{ textAlign: 'center', marginBottom: 32 }}>
+          <img
+            src="https://i.imgur.com/07T7lEs.png"
+            alt="Ascent Logo"
+            style={{
+              width: 'auto',
+              maxWidth: '90vw',
+              maxHeight: '18vh',
+              objectFit: 'contain',
+              display: 'block',
+              margin: '0 auto 10px auto',
+            }}
+          />
+          <p style={{ margin: 0 }}>The Premier Endgame Ironman Clan</p>
+        </header>
 
-        <div className={css['button-container']}>
+        <div
+          className="buttons"
+          style={{
+            display: 'flex',
+            gap: 20,
+            marginBottom: 32,
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+        >
           <a
-            href="https://discord.gg/sUT4Xx9zag"
+            href="https://discord.gg/5r5K2ZHkrW"
             target="_blank"
-            className={css.button}
+            rel="noopener noreferrer"
+            style={{
+              backgroundColor: '#9b59ff',
+              color: 'white',
+              padding: '15px 25px',
+              textDecoration: 'none',
+              borderRadius: 10,
+              boxShadow: '0 0 10px #9b59ff',
+              transition: 'background-color 0.3s ease',
+              marginRight: 0,
+            }}
           >
             Join Discord
           </a>
           <a
-            href="https://templeosrs.com/groups/overview.php?id=241"
+            href="https://templeosrs.com/groups/overview.php?id=3230"
             target="_blank"
-            className={css.button}
+            rel="noopener noreferrer"
+            style={{
+              backgroundColor: '#9b59ff',
+              color: 'white',
+              padding: '15px 25px',
+              textDecoration: 'none',
+              borderRadius: 10,
+              boxShadow: '0 0 10px #9b59ff',
+              transition: 'background-color 0.3s ease',
+              marginRight: 0,
+            }}
           >
-            Visit TempleOSRS
+            View Temple Page
+          </a>
+          <a
+            href="#"
+            style={{
+              backgroundColor: '#9b59ff',
+              color: 'white',
+              padding: '15px 25px',
+              textDecoration: 'none',
+              borderRadius: 10,
+              boxShadow: '0 0 10px #9b59ff',
+              transition: 'background-color 0.3s ease',
+              marginRight: 0,
+            }}
+          >
+            Applications Coming Soon
           </a>
         </div>
 
-        <div className={css['apply-section']}>
-          <h2 className={css['heading-2']}>Apply for Rank</h2>
-          <p className={css.paragraph}>
-            Ready to take the next step in the Irons Grotto community? Apply for
-            a higher rank by clicking the button below. You'll need to log in
-            via Discord, and **you must be a member of our Discord server** to
-            complete the application process.
-          </p>
-          <div className={css['button-container']}>
-            <form action={handleSubmit}>
-              <button
-                type="submit"
-                className={`${css.button} ${css['apply-here']}`}
-              >
-                Apply Here
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div className={css['about-section']}>
-          <h2 className={css['heading-2']}>About Us</h2>
-          <p className={css.paragraph}>
-            We are a social Ironman clan dedicated to creating a vibrant
-            community within the OSRS universe. Our clan organizes various
-            events including bingo, boss of the week challenges, skill of the
-            week competitions, and weekly group activities such as Tempoross and
-            Wilderness Prayer sessions. Join us to find a supportive and active
-            community!
-          </p>
-        </div>
-
-        <div className={css.leadership}>
-          <h2 className={css['heading-2']}>Leadership</h2>
-          <ul>
+        <div
+          className="requirements"
+          style={{
+            maxWidth: 700,
+            background: '#1a1a2e',
+            padding: 30,
+            borderRadius: 12,
+            boxShadow: '0 0 15px rgba(155, 89, 255, 0.3)',
+          }}
+        >
+          <h2 style={{ color: '#9b59ff', marginBottom: 15 }}>Clan Requirements</h2>
+          <ul style={{ listStyleType: 'square', paddingLeft: 20, margin: 0 }}>
+            <li>100 Theatre of Blood KC</li>
+            <li>100 Expert Tombs of Amascut</li>
+            <li>25 Challenge Mode Chambers of Xeric</li>
+            <li>95 Slayer</li>
+            <li>Avernic Defender Hilt</li>
             <li>
-              <strong>Owners:</strong> Avios & Tyluh
+              Elder Maul <strong>OR</strong> Dragon Warhammer
             </li>
-            <li>
-              <strong>Deputies:</strong> RodneyMullen, 41ex, Claytonaa
-            </li>
+            <li>Infernal Cape</li>
+            <li>Dizana's Quiver</li>
           </ul>
         </div>
       </div>
