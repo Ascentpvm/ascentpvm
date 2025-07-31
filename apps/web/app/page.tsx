@@ -34,7 +34,7 @@ export default async function HomePage() {
             style={{
               width: 'auto',
               maxWidth: '90vw',
-              maxHeight: '18vh',
+              maxHeight: '35vh',
               objectFit: 'contain',
               display: 'block',
               margin: '0 auto 10px auto',
