@@ -9,7 +9,6 @@ import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-vali
 import { RankData } from '../../utils/calculators/calculate-rank';
 import { calculateTotalPoints } from '../../utils/calculators/calculate-total-points';
 import { rankThresholds } from '@/config/ranks';
-import { R } from 'node_modules/msw/lib/core/HttpResponse-Bls5AXtT.mjs';
 
 export type RankCalculatorData = CommonPointCalculatorData & RankData;
 

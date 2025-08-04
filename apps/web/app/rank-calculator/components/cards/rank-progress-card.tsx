@@ -25,7 +25,6 @@ import { getRankImageUrl } from '../../utils/get-rank-image-url';
 import { useCurrentPlayer } from '../../contexts/current-player-context';
 import { handleToastUpdates } from '../../utils/handle-toast-updates';
 import { publishRankSubmissionAction } from '../../[player]/actions/publish-rank-submission-action';
-import { rankThresholds } from '@/config/ranks';
 
 export function RankProgressCard() {
   const {

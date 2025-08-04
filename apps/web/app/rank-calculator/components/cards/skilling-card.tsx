@@ -1,4 +1,4 @@
-import { Flex, Progress, Separator, Text } from '@radix-ui/themes';
+import { Flex, Separator, Text } from '@radix-ui/themes';
 import {
   DiaryLocation,
   DiaryTier,
@@ -19,7 +19,6 @@ import { isAchievementDiaryCapeAchieved } from '../../utils/is-achievement-diary
 
 export function SkillingCard() {
   const {
-    pointsAwarded,
     totalLevelPoints,
     achievementDiariesPoints,
     ehpPoints,

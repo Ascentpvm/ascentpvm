@@ -1,4 +1,4 @@
-import { Flex, Progress, Separator, Text } from '@radix-ui/themes';
+import { Flex, Separator, Text } from '@radix-ui/themes';
 import Image from 'next/image';
 import { useFormContext } from 'react-hook-form';
 import { DataCard } from '../data-card';
@@ -11,7 +11,6 @@ import { clogDiaryTierNameByBonusPoints } from '@/config/custom-diaries';
 
 export function CollectionLogAndCluesCard() {
   const {
-    pointsAwarded,
     collectionLogSlotPoints,
     clueScrollTierPoints,
     collectionLogBonusPoints,

@@ -1,4 +1,4 @@
-import { Flex, Progress, Separator, Text } from '@radix-ui/themes';
+import { Flex, Separator, Text } from '@radix-ui/themes';
 import Image from 'next/image';
 import { useFormContext } from 'react-hook-form';
 import { CombatAchievementTier, TzHaarCape } from '@/app/schemas/osrs';
@@ -14,7 +14,6 @@ import { ValidationTooltip } from '../validation-tooltip';
 
 export function CombatCard() {
   const {
-    pointsAwarded,
     combatAchievementTierPoints,
     ehbPoints,
     tzhaarCapePoints,
