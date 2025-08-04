@@ -66,12 +66,12 @@ export const rankRequiredItems: Partial<
   Record<Rank, CollectionLogItemName[][]>
 > = {
   Sapphire: [
-    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Dragon warhammer'],
-    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul'],
+    ['Infernal cape', "Dizana's quiver (uncharged)", 'Avernic defender hilt', 'Dragon warhammer'],
+    ['Infernal cape', "Dizana's quiver (uncharged)", 'Avernic defender hilt', 'Elder maul'],
   ],
   Scribe: [
-    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Dragon warhammer'],
-    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul'],
+    ['Infernal cape', "Dizana's quiver (uncharged)", 'Avernic defender hilt', 'Dragon warhammer'],
+    ['Infernal cape', "Dizana's quiver (uncharged)", 'Avernic defender hilt', 'Elder maul'],
   ],
 };
 export const rankRequiredCombatAchievements: Partial<
