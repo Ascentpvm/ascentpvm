@@ -7,6 +7,7 @@ import {
 } from './osrs';
 
 export const RankStructure = z.enum([
+  'Clog',
   'Standard',
   'Admin',
   'Moderator',
@@ -34,6 +35,10 @@ export const RankSubmissionStatus = z.enum(['Pending', 'Approved', 'Rejected']);
 
 export type RankSubmissionStatus = z.infer<typeof RankSubmissionStatus>;
 
+export const RankType = z.enum(['PVM', 'CollectionLog']);
+
+export type RankType = z.infer<typeof RankType>;
+
 export const RankSubmissionMetadata = z.object({
   status: RankSubmissionStatus,
   discordMessageId: z.string(),
@@ -45,6 +50,7 @@ export const RankSubmissionMetadata = z.object({
   isTempleCollectionLogOutdated: z.boolean(),
   hasWikiSyncData: z.boolean(),
   automaticApproval: z.boolean().optional(),
+  rankType: RankType, // Added to track the type of rank submission
 });
 
 export type RankSubmissionMetadata = z.infer<typeof RankSubmissionMetadata>;
@@ -59,6 +65,25 @@ export const RankSubmissionDiff = z.object({
   hasBloodTorva: z.boolean().nullable(),
   hasDizanasQuiver: z.boolean().nullable(),
   hasAchievementDiaryCape: z.boolean().nullable(),
+  rankType: RankType, // Added to differentiate between PVM and Collection Log ranks
 });
 
 export type RankSubmissionDiff = z.infer<typeof RankSubmissionDiff>;
+
+export const PvmRankStructure = z.enum([
+  'Standard',
+  'Deputy Owner',
+  'Seren',
+]);
+
+export type PvmRankStructure = z.infer<typeof PvmRankStructure>;
+
+export const CollectionLogRankStructure = z.enum([
+  'Beginner',
+  'Intermediate',
+  'Advanced',
+  'Expert',
+  'Master',
+]);
+
+export type CollectionLogRankStructure = z.infer<typeof CollectionLogRankStructure>;

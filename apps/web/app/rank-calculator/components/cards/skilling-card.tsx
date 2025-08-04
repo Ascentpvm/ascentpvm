@@ -11,8 +11,6 @@ import { DataCard } from '../data-card';
 import { Select } from '../select';
 import { EditableText } from '../editable-text';
 import { useSkillingPointCalculator } from '../../hooks/point-calculator/skilling/use-skilling-point-calculator';
-import { formatPercentage } from '../../utils/format-percentage';
-import { getPointsRemainingLabel } from '../../utils/get-points-remaining-label';
 import { formatNumber } from '../../utils/format-number';
 import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
 import { ValidationTooltip } from '../validation-tooltip';
@@ -22,8 +20,6 @@ import { isAchievementDiaryCapeAchieved } from '../../utils/is-achievement-diary
 export function SkillingCard() {
   const {
     pointsAwarded,
-    pointsAwardedPercentage,
-    pointsRemaining,
     totalLevelPoints,
     achievementDiariesPoints,
     ehpPoints,
@@ -53,22 +49,12 @@ export function SkillingCard() {
             </Text>
           </Flex>
         }
-        right={
-          <Text aria-label="Total skilling points" weight="medium" size="2">
-            {formatNumber(pointsAwarded)}
-          </Text>
-        }
       />
       <Separator size="4" />
       <DataCard.Row
         left={
           <Text color="gray" weight="medium" size="2">
             Category
-          </Text>
-        }
-        right={
-          <Text color="gray" weight="medium" size="2">
-            Points
           </Text>
         }
       />
@@ -181,24 +167,7 @@ export function SkillingCard() {
           </Text>
         }
       />
-      <DataCard.Row
-        left={
-          <Text color="gray" size="2">
-            Progress
-          </Text>
-        }
-        center={
-          <Text aria-label="Skilling point completion percentage" size="2">
-            {formatPercentage(pointsAwardedPercentage)}
-          </Text>
-        }
-        right={
-          <Text aria-label="Skilling points remaining" color="gray" size="2">
-            {getPointsRemainingLabel(pointsRemaining)}
-          </Text>
-        }
-      />
-      <Progress size="3" value={pointsAwardedPercentage * 100} />
+
     </DataCard.Root>
   );
 }

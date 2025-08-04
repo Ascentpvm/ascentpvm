@@ -9,7 +9,7 @@ import { ActionError } from './action-error';
 
 export const actionClient = createSafeActionClient({
   handleServerError(error) {
-    console.error(`Action error: ${error.message}`);
+    console.error(`Action error: ${error.message} at ${error.stack}`);
 
     Sentry.captureException(error);
 

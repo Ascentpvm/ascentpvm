@@ -18,6 +18,7 @@ export function calculateRank(
   acquiredItems: RankCalculatorSchema['acquiredItems'],
   combatAchievementTier: CombatAchievementTier,
   pointsAwarded: number,
+  collectionLogSlots: number,
   rankStructure: RankStructure,
 ): RankData {
   const rankData = Object.entries(rankThresholds[rankStructure]) as [
@@ -29,44 +30,49 @@ export function calculateRank(
     combatAchievementTier,
   );
 
-  const [[initialRank]] = rankData;
+  let currentRank: Rank = rankData[0][0];
+  let nextRank: Rank | null = null;
+  let throttleReason: 'items' | 'Master CAs' | null = null;
 
-  return rankData.reduce<RankData>(
-    (acc, [rank, threshold], i) => {
-      if (!acc.throttleReason && pointsAwarded >= threshold) {
-        const hasRequiredItems =
-          rankRequiredItems[rank]?.some((itemRequirements) =>
-            itemRequirements.every((item) => acquiredItems[item]),
-          ) ?? true;
+  const effectivePoints =
+    rankStructure === 'Clog' ? collectionLogSlots : pointsAwarded;
 
-        const hasRequiredCombatAchievements =
-          (rankRequiredCombatAchievements[rank] &&
-            combatAchievementTiers.indexOf(
-              rankRequiredCombatAchievements[rank],
-            ) <= achievedCombatAchievementTierIndex) ??
-          true;
-
-        if (!hasRequiredItems) {
-          return {
-            ...acc,
-            throttleReason: 'items',
-          };
-        }
-
-        if (!hasRequiredCombatAchievements) {
-          return {
-            ...acc,
-            throttleReason: 'Master CAs',
-          };
-        }
-
-        const [nextRank = null] = rankData[i + 1] ?? [];
-
-        return { rank, nextRank, throttleReason: null };
-      }
-
-      return acc;
-    },
-    { rank: initialRank, nextRank: null, throttleReason: null },
+  console.log(
+    `Calculating rank for structure: ${rankStructure}, points: ${effectivePoints}`
   );
+
+  for (let i = 0; i < rankData.length; i++) {
+    const [rank, threshold] = rankData[i];
+
+    if (effectivePoints < threshold) {
+      break;
+    }
+
+    const hasRequiredItems =
+      rankRequiredItems[rank]?.some((itemRequirements) =>
+        itemRequirements.every((item) => acquiredItems[item]),
+      ) ?? true;
+
+    const hasRequiredCombatAchievements =
+      (rankRequiredCombatAchievements[rank] &&
+        combatAchievementTiers.indexOf(
+          rankRequiredCombatAchievements[rank],
+        ) <= achievedCombatAchievementTierIndex) ??
+      true;
+
+    if (!hasRequiredItems) {
+      throttleReason = 'items';
+      break;
+    }
+
+    if (!hasRequiredCombatAchievements) {
+      throttleReason = 'Master CAs';
+      break;
+    }
+
+    currentRank = rank;
+    nextRank = rankData[i + 1]?.[0] ?? null;
+  }
+
+  return { rank: currentRank, nextRank, throttleReason };
 }

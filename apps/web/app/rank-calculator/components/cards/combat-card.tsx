@@ -7,8 +7,6 @@ import { DataCard } from '../data-card';
 import { Select } from '../select';
 import { EditableText } from '../editable-text';
 import { useCombatPointCalculator } from '../../hooks/point-calculator/combat/use-combat-point-calculator';
-import { formatPercentage } from '../../utils/format-percentage';
-import { getPointsRemainingLabel } from '../../utils/get-points-remaining-label';
 import { formatNumber } from '../../utils/format-number';
 import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
 import { Checkbox } from '../checkbox';
@@ -17,8 +15,6 @@ import { ValidationTooltip } from '../validation-tooltip';
 export function CombatCard() {
   const {
     pointsAwarded,
-    pointsAwardedPercentage,
-    pointsRemaining,
     combatAchievementTierPoints,
     ehbPoints,
     tzhaarCapePoints,
@@ -54,25 +50,9 @@ export function CombatCard() {
             </Text>
           </Flex>
         }
-        right={
-          <Text aria-label="Total combat points" weight="medium" size="2">
-            {formatNumber(pointsAwarded)}
-          </Text>
-        }
+        right={'-'}
       />
       <Separator size="4" />
-      <DataCard.Row
-        left={
-          <Text color="gray" weight="medium" size="2">
-            Category
-          </Text>
-        }
-        right={
-          <Text color="gray" weight="medium" size="2">
-            Points
-          </Text>
-        }
-      />
       <DataCard.Row
         left={
           <Text color="gray" size="2">
@@ -206,24 +186,6 @@ export function CombatCard() {
           </Text>
         }
       />
-      <DataCard.Row
-        left={
-          <Text color="gray" size="2">
-            Progress
-          </Text>
-        }
-        center={
-          <Text aria-label="Combat point completion percentage" size="2">
-            {formatPercentage(pointsAwardedPercentage)}
-          </Text>
-        }
-        right={
-          <Text aria-label="Combat points remaining" color="gray" size="2">
-            {getPointsRemainingLabel(pointsRemaining)}
-          </Text>
-        }
-      />
-      <Progress size="3" value={pointsAwardedPercentage * 100} />
     </DataCard.Root>
   );
 }

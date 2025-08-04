@@ -18,11 +18,14 @@ import { useRankCalculator } from '../../hooks/point-calculator/use-rank-calcula
 import { getRankName } from '../../utils/get-rank-name';
 import { getPointsRemainingLabel } from '../../utils/get-points-remaining-label';
 import { formatNumber } from '../../utils/format-number';
+import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
+import {useWatch} from 'react-hook-form';
 import { RankStructureInfoModal } from '../rank-structure-info-modal';
 import { getRankImageUrl } from '../../utils/get-rank-image-url';
 import { useCurrentPlayer } from '../../contexts/current-player-context';
 import { handleToastUpdates } from '../../utils/handle-toast-updates';
 import { publishRankSubmissionAction } from '../../[player]/actions/publish-rank-submission-action';
+import { rankThresholds } from '@/config/ranks';
 
 export function RankProgressCard() {
   const {
@@ -43,6 +46,12 @@ export function RankProgressCard() {
   const { executeAsync: publishRankSubmission } = useAction(
     publishRankSubmissionAction.bind(null, currentRank, playerName),
   );
+  const rankStructure = useWatch<RankCalculatorSchema, 'rankStructure'>({
+    name: 'rankStructure',
+  });
+  const collectionLogCount = useWatch<RankCalculatorSchema, 'collectionLogCount'>({
+    name: 'collectionLogCount',
+  });
 
   useEffect(() => {
     if (rank !== getValues('rank')) {
@@ -76,21 +85,21 @@ export function RankProgressCard() {
             left={
               <Flex direction="column">
                 <Text size="2" color="gray" id="total-points-label">
-                  Total points
+                  Total {rankStructure == 'Standard' ? 'points' : 'collection log slots'}
                 </Text>
                 <Text
                   aria-labelledby="total-points-label"
                   size="3"
                   weight="medium"
                 >
-                  {formatNumber(pointsAwarded)}
+                  {rankStructure == 'Standard' ? formatNumber(pointsAwarded) : formatNumber(collectionLogCount)}
                 </Text>
               </Flex>
             }
             right={
               <Flex direction="column" align="end">
                 <Text size="2" color="gray" id="points-to-next-rank-label">
-                  Points to next rank
+                  {rankStructure == 'Standard' ? 'Points' : 'Clogs'} to next rank
                 </Text>
                 <Text
                   aria-labelledby="points-to-next-rank-label"

@@ -49,7 +49,18 @@ export function PlayerList({ accounts }: PlayerListProps) {
       gap="6"
       direction="column"
     >
-      <Heading size="5">Irons Grotto Rank Calculator</Heading>
+      <Heading size="5"><img
+            src="https://i.imgur.com/07T7lEs.png"
+            alt="Ascent Logo"
+            style={{
+              width: 'auto',
+              maxWidth: '90vw',
+              maxHeight: '35vh',
+              objectFit: 'contain',
+              display: 'block',
+              margin: '0 auto 10px auto',
+            }}
+          /></Heading>
       <Flex direction="column" gap="4" width="330px">
         {Object.values(optimisticState).map(
           ({ rsn, joinDate, isNameInvalid }) => (

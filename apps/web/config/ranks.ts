@@ -6,46 +6,49 @@ import type {
   CombatAchievementTier,
 } from '@/app/schemas/osrs';
 
-export const rankNames: Partial<Record<Rank, string>> = {
-  Astral: 'Staff',
-};
+export const rankNames: Partial<Record<Rank, string>> = {};
 
 export const StandardRank = Rank.extract([
-  'Champion',
-  'Recruit',
-  'Pawn',
-  'Corporal',
-  'Novice',
-  'Sergeant',
-  'Cadet',
-  'Lieutenant',
-  'Proselyte',
+  'Sapphire',
+  'Emerald',
+  'Red Topaz',
+  'Zenyte',
   'Captain',
-  'General',
-  'Skulled',
-  'Beast',
+  'Astral',
+  'Soul',
+  'Completionist'
 ]);
 
+export const ClogRanks = Rank.extract([
+  'Scribe',
+  'Learner',
+  'Teacher',
+  'Councillor',
+  'Assistant'
+])
 export type StandardRank = z.infer<typeof StandardRank>;
+export type ClogRanks = z.infer<typeof ClogRanks>;
 
 export const rankThresholds: Record<
   RankStructure,
   Partial<Record<Rank, number>>
 > = {
+  Clog: {
+    'Scribe': 700,
+    'Learner': 850,
+    'Teacher': 1025,
+    'Councillor': 1200,
+    'Assistant': 1425
+  },
   Standard: {
-    Champion: 0,
-    Recruit: 500,
-    Pawn: 1000,
-    Corporal: 1750,
-    Novice: 3000,
-    Sergeant: 4500,
-    Cadet: 7000,
-    Lieutenant: 9000,
-    Proselyte: 11000,
-    Captain: 13000,
-    General: 16000,
-    Skulled: 19000,
-    Beast: 24000,
+    Sapphire: 0,
+    Emerald: 1500,
+    'Red Topaz': 2250,
+    Zenyte: 3000,
+    Captain: 4100,
+    Astral: 5300,
+    Soul: 6800,
+    Completionist: 9000,
   },
   'Deputy Owner': {
     'Deputy Owner': 0,

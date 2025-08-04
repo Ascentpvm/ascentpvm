@@ -165,6 +165,7 @@ export async function GET(request: NextRequest) {
       acquiredItems,
       combatAchievementTier,
       totalPointsAwarded,
+      collectionLogCount,
       rankStructure,
     );
 

@@ -1,4 +1,4 @@
-import { auth } from '@/auth';
+import { auth, signIn } from '@/auth';
 import { redirect } from 'next/navigation';
 
 export default async function HomePage() {
@@ -8,6 +8,18 @@ export default async function HomePage() {
   if (session) {
     redirect(rankCalculatorUrl);
   }
+  const handleSubmit = async () => {
+    'use server';
+
+    const session = await auth();
+    const rankCalculatorUrl = '/rank-calculator';
+
+    if (!session) {
+      await signIn('discord', { redirectTo: rankCalculatorUrl });
+    }
+
+    redirect(rankCalculatorUrl);
+  };
 
   // Note: Head elements should be placed in layout.tsx or a Client Component using next/head
   return (
@@ -87,21 +99,11 @@ export default async function HomePage() {
           >
             View Temple Page
           </a>
-          <a
-            href="#"
-            style={{
-              backgroundColor: '#9b59ff',
-              color: 'white',
-              padding: '15px 25px',
-              textDecoration: 'none',
-              borderRadius: 10,
-              boxShadow: '0 0 10px #9b59ff',
-              transition: 'background-color 0.3s ease',
-              marginRight: 0,
-            }}
-          >
-            Applications Coming Soon
-          </a>
+          <form action={handleSubmit}>
+            <button type="submit" style={{ backgroundColor: '#9b59ff', color: 'white', padding: '15px 25px', border: 'none', borderRadius: 10, boxShadow: '0 0 10px #9b59ff', transition: 'background-color 0.3s ease', marginRight: 0 }}>
+              Sign In
+            </button>
+          </form>
         </div>
 
         <div
