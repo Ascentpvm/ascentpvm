@@ -67,11 +67,11 @@ export const rankRequiredItems: Partial<
 > = {
   Sapphire: [
     ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Dragon warhammer'],
-    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul']
+    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul'],
   ],
   Scribe: [
     ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Dragon warhammer'],
-    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul']
+    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul'],
   ],
 
 export const rankRequiredCombatAchievements: Partial<
