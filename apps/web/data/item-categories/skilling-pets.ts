@@ -53,10 +53,10 @@ export const skillingPets: ItemCategory = {
       }
     >
   >).map(
-    ([name, { points, image = formatWikiImageUrl(name), targetDropSources }]) =>
+    ([name, { image = formatWikiImageUrl(name), targetDropSources }]) =>
       singleItem({
         name,
-        points,
+        points: 0,
         image,
         collectionLogCategory: 'all_pets',
         targetDropSources,

@@ -31,6 +31,7 @@ function calculatePointsForSingleDropSource(
     ignoreAmountMultiplier = false,
   }: CalculatePointsForSingleDropSourceOptions,
 ) {
+
   const bossName =
     collectionLogItemBossNameMap[itemName] ??
     rewardItemBossNameMap[dropSource] ??

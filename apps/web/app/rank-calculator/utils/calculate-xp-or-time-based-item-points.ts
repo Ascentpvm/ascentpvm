@@ -9,7 +9,7 @@ export function calculateXpOrTimeBasedItemPoints(
   // Validate that the provided numbers are greater than 0
   const parsedEstimatedXpToCompletion = z
     .number()
-    .positive()
+    .nonnegative()
     .parse(estimatedXpOrTimeToCompletion);
   const parsedEhpRate = z.number().positive().parse(ehpRate);
 
