@@ -9,10 +9,8 @@ import {
 export const RankStructure = z.enum([
   'Clog',
   'Standard',
-  'Admin',
-  'Moderator',
   'Deputy Owner',
-  'Owner',
+  'Seren',
 ]);
 
 export type RankStructure = z.infer<typeof RankStructure>;
@@ -35,10 +33,6 @@ export const RankSubmissionStatus = z.enum(['Pending', 'Approved', 'Rejected']);
 
 export type RankSubmissionStatus = z.infer<typeof RankSubmissionStatus>;
 
-export const RankType = z.enum(['PVM', 'CollectionLog']);
-
-export type RankType = z.infer<typeof RankType>;
-
 export const RankSubmissionMetadata = z.object({
   status: RankSubmissionStatus,
   discordMessageId: z.string(),
@@ -50,7 +44,6 @@ export const RankSubmissionMetadata = z.object({
   isTempleCollectionLogOutdated: z.boolean(),
   hasWikiSyncData: z.boolean(),
   automaticApproval: z.boolean().optional(),
-  rankType: RankType, // Added to track the type of rank submission
 });
 
 export type RankSubmissionMetadata = z.infer<typeof RankSubmissionMetadata>;
@@ -65,7 +58,6 @@ export const RankSubmissionDiff = z.object({
   hasBloodTorva: z.boolean().nullable(),
   hasDizanasQuiver: z.boolean().nullable(),
   hasAchievementDiaryCape: z.boolean().nullable(),
-  rankType: RankType, // Added to differentiate between PVM and Collection Log ranks
 });
 
 export type RankSubmissionDiff = z.infer<typeof RankSubmissionDiff>;

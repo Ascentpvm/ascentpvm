@@ -19,7 +19,7 @@ export const StandardRank = Rank.extract([
   'Completionist'
 ]);
 
-export const ClogRanks = Rank.extract([
+export const ClogRank = Rank.extract([
   'Scribe',
   'Learner',
   'Teacher',
@@ -27,7 +27,7 @@ export const ClogRanks = Rank.extract([
   'Assistant'
 ])
 export type StandardRank = z.infer<typeof StandardRank>;
-export type ClogRanks = z.infer<typeof ClogRanks>;
+export type ClogRank = z.infer<typeof ClogRank>;
 
 export const rankThresholds: Record<
   RankStructure,
@@ -53,14 +53,8 @@ export const rankThresholds: Record<
   'Deputy Owner': {
     'Deputy Owner': 0,
   },
-  Admin: {
-    Administrator: 0,
-  },
-  Owner: {
-    Owner: 0,
-  },
-  Moderator: {
-    Moderator: 0,
+  Seren: {
+    Serenist: 0,
   },
 } as const;
 
