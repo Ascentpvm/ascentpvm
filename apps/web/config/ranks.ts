@@ -53,7 +53,7 @@ export const rankThresholds: Record<
   'Deputy Owner': {
     'Deputy Owner': 0,
   },
-  Seren: {
+  Staff: {
     Serenist: 0,
   },
 } as const;
