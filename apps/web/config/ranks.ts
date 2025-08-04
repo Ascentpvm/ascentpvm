@@ -65,14 +65,14 @@ export const rankThresholds: Record<
 export const rankRequiredItems: Partial<
   Record<Rank, CollectionLogItemName[][]>
 > = {
-  Novice: [
-    ['Deadeye prayer scroll', 'Mystic vigour prayer scroll'],
-    ['Deadeye prayer scroll', 'Arcane prayer scroll'],
-    ['Dexterous prayer scroll', 'Arcane prayer scroll'],
-    ['Dexterous prayer scroll', 'Mystic vigour prayer scroll'],
+  Sapphire: [
+    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Dragon warhammer'],
+    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul']
   ],
-  Sergeant: [['Dragon warhammer'], ['Elder maul'], ['Bandos hilt']],
-};
+  Scribe: [
+    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Dragon warhammer'],
+    ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul']
+  ],
 
 export const rankRequiredCombatAchievements: Partial<
   Record<Rank, CombatAchievementTier>
