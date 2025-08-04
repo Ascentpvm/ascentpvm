@@ -9,8 +9,8 @@ import {
 export const RankStructure = z.enum([
   'Clog',
   'Standard',
+  'Staff',
   'Deputy Owner',
-  'Seren',
 ]);
 
 export type RankStructure = z.infer<typeof RankStructure>;
