@@ -17,7 +17,7 @@ interface ItemProps {
 export const MemoisedItem = memo(({ item, acquired, error }: ItemProps) => {
   const scaling = useCalculatorScaling();
   const scaledItemPoints = Intl.NumberFormat('en-gb').format(
-    Math.max(1, Math.floor(item.points * scaling)),
+    Math.max(0, Math.floor(item.points * scaling)),
   );
   const pointsError =
     isCollectionLogItem(item) && item.hasPointsError

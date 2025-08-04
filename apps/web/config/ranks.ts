@@ -74,8 +74,10 @@ export const rankRequiredItems: Partial<
     ['Infernal cape', "Dizana's quiver (uncharged)", 'Avernic defender hilt', 'Elder maul'],
   ],
 };
+
+/**
+ * Maps the required combat achievement tier needed to achieve each rank.
+ */
 export const rankRequiredCombatAchievements: Partial<
   Record<Rank, CombatAchievementTier>
-> = {
-  Skulled: 'Master',
-};
+> = {};

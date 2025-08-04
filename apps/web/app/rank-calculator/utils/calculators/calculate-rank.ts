@@ -5,8 +5,9 @@ import {
   rankRequiredItems,
   rankThresholds,
 } from '@/config/ranks';
-import type { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
-import { CombatAchievementTier } from '@/app/schemas/osrs';
+import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
+import { CollectionLogItemName, CombatAchievementTier } from '@/app/schemas/osrs';
+import { useWatch } from 'react-hook-form';
 
 export interface RankData {
   rank: Rank;
@@ -29,6 +30,12 @@ export function calculateRank(
   const achievedCombatAchievementTierIndex = combatAchievementTiers.indexOf(
     combatAchievementTier,
   );
+  const cape = useWatch<RankCalculatorSchema, 'tzhaarCape'>({
+    name: 'tzhaarCape',
+  });
+  const quiver = useWatch<RankCalculatorSchema, 'hasDizanasQuiver'>({
+    name: 'hasDizanasQuiver'
+  });
 
   let currentRank: Rank = rankData[0][0];
   let nextRank: Rank | null = null;
@@ -48,10 +55,27 @@ export function calculateRank(
       break;
     }
 
+    const missingItems: CollectionLogItemName[] = [];
     const hasRequiredItems =
-      rankRequiredItems[rank]?.some((itemRequirements) =>
-        itemRequirements.every((item) => acquiredItems[item]),
-      ) ?? true;
+      rankRequiredItems[rank]?.some((itemRequirements) => {
+        const isRequirementMet = itemRequirements.every((item) => {
+          if (item == 'Infernal cape') {
+            return cape === 'Infernal cape'
+          }
+
+          if (item == 'Dizana\'s quiver (uncharged)') {
+            return quiver
+          }
+          const isAcquired = acquiredItems[item];
+          if (!isAcquired) {
+            missingItems.push(item);
+          }
+          return isAcquired;
+        });
+        return isRequirementMet;
+      }) ?? true;
+
+    console.log(missingItems)
 
     const hasRequiredCombatAchievements =
       (rankRequiredCombatAchievements[rank] &&
