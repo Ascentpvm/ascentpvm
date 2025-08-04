@@ -15,11 +15,15 @@ export function useRank(pointsAwarded: number) {
   >({
     name: 'combatAchievementTier',
   });
+  const collectionLogCount = useWatch<RankCalculatorSchema, 'collectionLogCount'>({
+    name: 'collectionLogCount',
+  });
 
   return calculateRank(
     acquiredItems,
     combatAchievementTier,
     pointsAwarded,
+    collectionLogCount,
     rankStructure,
   );
 }

@@ -9,12 +9,17 @@ import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-vali
 import { RankData } from '../../utils/calculators/calculate-rank';
 import { calculateTotalPoints } from '../../utils/calculators/calculate-total-points';
 import { rankThresholds } from '@/config/ranks';
+import { R } from 'node_modules/msw/lib/core/HttpResponse-Bls5AXtT.mjs';
 
 export type RankCalculatorData = CommonPointCalculatorData & RankData;
 
 export function useRankCalculator() {
   const rankStructure = useWatch<RankCalculatorSchema, 'rankStructure'>({
     name: 'rankStructure',
+  });
+
+  const collectionLogCount = useWatch<RankCalculatorSchema, 'collectionLogCount'>({
+    name: 'collectionLogCount',
   });
 
   const { pointsAwarded: totalCollectionLogPoints } =
@@ -26,13 +31,18 @@ export function useRankCalculator() {
   const { pointsAwarded: totalSkillingPoints } = useSkillingPointCalculator();
 
   const { pointsAwarded: totalCombatPoints } = useCombatPointCalculator();
+  let pointsAwarded = 0;
+  if (rankStructure === 'Standard') {
+    pointsAwarded = calculateTotalPoints(
+      totalCollectionLogPoints,
+      totalNotableItemsPoints,
+      totalSkillingPoints,
+      totalCombatPoints,
+    );
+  } else if (rankStructure === 'Clog') {
+    pointsAwarded = collectionLogCount;
+  }
 
-  const pointsAwarded = calculateTotalPoints(
-    totalCollectionLogPoints,
-    totalNotableItemsPoints,
-    totalSkillingPoints,
-    totalCombatPoints,
-  );
 
   const { rank, nextRank, throttleReason } = useRank(pointsAwarded);
 
@@ -48,7 +58,7 @@ export function useRankCalculator() {
 
   const pointsAwardedPercentage = nextRankThreshold
     ? (pointsAwarded - currentRankThreshold) /
-      (nextRankThreshold - currentRankThreshold)
+    (nextRankThreshold - currentRankThreshold)
     : pointsAwarded / nextRankThreshold;
 
   return {

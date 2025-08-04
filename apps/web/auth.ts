@@ -47,7 +47,10 @@ export const config = {
       const { guildId } = serverConstants.discord;
 
       try {
-        await discordBotClient.get(Routes.guildMember(guildId, profile.id));
+
+        if (process.env.NODE_ENV !== 'development') {
+          await discordBotClient.get(Routes.guildMember(guildId, profile.id));
+        }
       } catch (error) {
         if (
           error instanceof DiscordAPIError &&
@@ -109,8 +112,13 @@ export const config = {
 
   logger: {
     error: (error) => {
-      console.error(error);
+      // Don't log JWT session errors to Sentry in development
+      if ((error as any).type === 'JWTSessionError' && process.env.NODE_ENV === 'development') {
+        console.warn('JWT Session Error (likely due to AUTH_SECRET change):', error.message);
+        return;
+      }
 
+      console.error(error);
       Sentry.captureException(error);
     },
   },

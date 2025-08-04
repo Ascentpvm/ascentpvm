@@ -51,9 +51,9 @@ export async function POST(request: NextRequest) {
     }),
     ...(updateTemple
       ? [
-          // Check all players in the new member list
-          fetch(`${clientConstants.publicUrl}/api/check-all-players`),
-        ]
+        // Check all players in the new member list
+        fetch(`${clientConstants.publicUrl}/api/check-all-players`),
+      ]
       : []),
   ]);
 

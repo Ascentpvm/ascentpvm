@@ -10,7 +10,6 @@ export function useAchievementDiaryCapePoints() {
   >({
     name: 'hasAchievementDiaryCape',
   });
-  const scaling = useCalculatorScaling();
 
-  return calculateAchievementDiaryCapePoints(hasAchievementDiaryCape, scaling);
+  return calculateAchievementDiaryCapePoints(hasAchievementDiaryCape, 0);
 }

@@ -15,7 +15,7 @@ if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Irons Grotto - Old School RuneScape Clan',
+  title: 'Ascent PVM - Old School RuneScape Clan',
 };
 
 export default function RootLayout({

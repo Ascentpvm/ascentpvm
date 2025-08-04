@@ -13,7 +13,7 @@ export const sendMessageFixture = {
   channel_id: '1259252264804159624',
   author: {
     id: '1301172323742781524',
-    username: 'Irons Grotto Rank Calculator',
+    username: 'Ascent PVM Rank Calculator',
     avatar: null,
     discriminator: '9641',
     public_flags: 0,

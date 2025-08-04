@@ -2,7 +2,7 @@ import { calculateRank } from './calculate-rank';
 import { Rank } from '@/config/enums';
 
 it('returns Corporal if the player has the required points, but does not have titans/cox prayers', () => {
-  const { rank } = calculateRank({}, 'Grandmaster', 100000, 'Standard');
+  const { rank } = calculateRank({}, 'Grandmaster', 100000, 500, 'Standard');
 
   expect(rank).toEqual<Rank>('Corporal');
 });
@@ -12,6 +12,7 @@ it('returns Novice if the player has the required points, titans prayers, but do
     { 'Deadeye prayer scroll': true, 'Mystic vigour prayer scroll': true },
     'Grandmaster',
     100000,
+    500,
     'Standard',
   );
 
@@ -23,6 +24,7 @@ it('returns Novice if the player has the required points, cox prayers, but does 
     { 'Dexterous prayer scroll': true, 'Arcane prayer scroll': true },
     'Grandmaster',
     100000,
+    500,
     'Standard',
   );
 
@@ -34,6 +36,7 @@ it('returns Novice if the player has the required points, a mix of titans/cox pr
     { 'Deadeye prayer scroll': true, 'Arcane prayer scroll': true },
     'Grandmaster',
     100000,
+    500,
     'Standard',
   );
 
@@ -49,6 +52,7 @@ it('returns General if the player has the required points, titans/cox prayers, a
     },
     'Elite',
     100000,
+    500,
     'Standard',
   );
 
@@ -64,6 +68,7 @@ it('returns Beast if the player has the required points, titans/cox prayers, a d
     },
     'Grandmaster',
     100000,
+    500,
     'Standard',
   );
 

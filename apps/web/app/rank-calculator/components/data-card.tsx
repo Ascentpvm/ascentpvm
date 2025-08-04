@@ -4,10 +4,10 @@ import { Card, Flex } from '@radix-ui/themes';
 interface DataCardRowProps {
   center?: ReactNode;
   left: ReactNode;
-  right: ReactNode;
+  right?: ReactNode;
 }
 
-function DataCardRow({ center = null, left, right }: DataCardRowProps) {
+function DataCardRow({ center = null, right = null, left}: DataCardRowProps) {
   const width = center ? '33%' : '50%';
 
   return (
@@ -19,7 +19,7 @@ function DataCardRow({ center = null, left, right }: DataCardRowProps) {
         </Flex>
       )}
       <Flex flexBasis={width} justify="end">
-        {right}
+        {right ?? '-'}
       </Flex>
     </Flex>
   );
