@@ -171,7 +171,7 @@ export function CombatCard() {
       <DataCard.Row
         left={
           <Text color="gray" size="2">
-            Speedrun diary tier
+            Ascent Diary Tier
           </Text>
         }
         center={
