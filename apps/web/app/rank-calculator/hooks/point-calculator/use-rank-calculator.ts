@@ -45,6 +45,8 @@ export function useRankCalculator() {
 
   const { rank, nextRank, throttleReason } = useRank(pointsAwarded);
 
+  console.log(throttleReason)
+
   const currentRankThreshold = rankThresholds[rankStructure][rank]!;
 
   const nextRankThreshold = !nextRank
