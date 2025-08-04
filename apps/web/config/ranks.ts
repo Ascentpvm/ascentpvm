@@ -73,7 +73,7 @@ export const rankRequiredItems: Partial<
     ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Dragon warhammer'],
     ['Infernal Cape', "Dizana's Quiver (uncharged)", 'Avernic Defender Hilt','Elder maul'],
   ],
-
+};
 export const rankRequiredCombatAchievements: Partial<
   Record<Rank, CombatAchievementTier>
 > = {
