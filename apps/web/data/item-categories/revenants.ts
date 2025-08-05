@@ -10,22 +10,6 @@ export const revenants: ItemCategory = {
       collectionLogCategory: 'revenants',
       targetDropSources: ['Revenant ork#On-task'],
     }),
-    compoundItem({
-      name: 'Obelisk',
-      image:
-        'https://oldschool.runescape.wiki/images/Obelisk_%28Construction%29_built.png',
-      requiredItems: [
-        {
-          clogName: 'Ancient crystal',
-          amount: 4,
-          targetDropSources: ['Revenant ork'],
-        },
-      ],
-      requiredLevels: {
-        Construction: 72,
-      },
-      collectionLogCategories: ['revenants'],
-    }),
     singleItem({
       name: "Viggora's chainmace",
       clogName: "Viggora's chainmace (u)",

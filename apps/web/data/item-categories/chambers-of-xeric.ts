@@ -56,16 +56,6 @@ export const chambersOfXeric: ItemCategory = {
       collectionLogCategory: 'chambers_of_xeric',
     }),
     singleItem({
-      name: 'Twisted ancestral colour kit',
-      collectionLogCategory: 'chambers_of_xeric',
-      ignoreDropRateModifier: true,
-    }),
-    singleItem({
-      name: 'Metamorphic dust',
-      collectionLogCategory: 'chambers_of_xeric',
-      ignoreDropRateModifier: true,
-    }),
-    singleItem({
       name: 'Olmlet',
       collectionLogCategory: 'chambers_of_xeric',
     }),

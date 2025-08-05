@@ -24,14 +24,6 @@ export const zulrah: ItemCategory = {
       collectionLogCategory: 'zulrah',
     }),
     singleItem({
-      name: 'Tanzanite mutagen',
-      collectionLogCategory: 'zulrah',
-    }),
-    singleItem({
-      name: 'Magma mutagen',
-      collectionLogCategory: 'zulrah',
-    }),
-    singleItem({
       name: 'Jar of swamp',
       collectionLogCategory: 'zulrah',
     }),
