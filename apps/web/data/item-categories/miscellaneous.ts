@@ -23,6 +23,7 @@ export const miscellaneous: ItemCategory = {
     singleItem({
       name: 'Earthbound tecpatl',
       collectionLogCategory: 'slayer',
+      targetDropSources: ['Earthen_Nagua']
     }),     
     singleItem({
       name: 'Swift blade',
