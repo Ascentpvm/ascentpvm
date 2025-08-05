@@ -5,13 +5,13 @@ export function getPointsRemainingLabel(
   throttleReason?: 'completionist' | 'join date' | 'boss kc' | 'items' | 'Master CAs' | 'slayer level' | null,
 ) {
   if (throttleReason === 'completionist') {
-    return 'Completionist required!';
+    return 'All Items';
   }
   if (throttleReason === 'join date') {
     return 'Join date too recent!';
   }
   if (throttleReason === 'items') {
-    return 'Items required!';
+    return 'Missing Required Items!';
   }
 
   if (throttleReason === 'Master CAs') {

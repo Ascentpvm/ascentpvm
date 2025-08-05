@@ -60,7 +60,9 @@ export function RankStructureInfoModal() {
                     </Table.Cell>
                     <Table.Cell>{getRankName(rank as Rank)}</Table.Cell>
                     <Table.Cell align="right">
-                      {formatNumber(points)}
+                      {
+                        rank === 'Completionist' ? 'All Items' : formatNumber(points)
+                      }
                     </Table.Cell>
                   </Table.Row>
                 ),
