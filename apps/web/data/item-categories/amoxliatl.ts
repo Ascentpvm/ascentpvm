@@ -5,7 +5,6 @@ import { compoundItem, singleItem } from '../utils/item-builders';
 export const Amoxliatl: ItemCategory = {
   image: formatWikiImageUrl('Amoxliatl_chathead', 'category'),
   items: [
-    compoundItem({
     singleItem({
       name: 'Glacial temotli',
       collectionLogCategory: 'amoxliatl',
