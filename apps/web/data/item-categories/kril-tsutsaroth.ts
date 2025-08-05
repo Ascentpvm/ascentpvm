@@ -6,10 +6,6 @@ export const krilTsutsaroth: ItemCategory = {
   image: formatWikiImageUrl("K'ril Tsutsaroth chathead", 'category'),
   items: [
     singleItem({
-      name: 'Steam battlestaff',
-      collectionLogCategory: 'kril_tsutsaroth',
-    }),
-    singleItem({
       name: 'Zamorakian spear',
       collectionLogCategory: 'kril_tsutsaroth',
       targetDropSources: ["K'ril Tsutsaroth"],
