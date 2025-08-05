@@ -26,6 +26,7 @@ import { kraken } from './item-categories/kraken';
 import { krearra } from './item-categories/krearra';
 import { krilTsutsaroth } from './item-categories/kril-tsutsaroth';
 import { majorSlayerItems } from './item-categories/major-slayer-items';
+import { magicTrainingArena } from './item-categories/mage-arena';
 import { miscellaneous } from './item-categories/miscellaneous';
 import { miscellaneousWildernessItems } from './item-categories/miscellaneous-wilderness-items';
 import { nex } from './item-categories/nex';
@@ -55,7 +56,7 @@ import { zulrah } from './item-categories/zulrah';
 export const itemList: ItemCategoryMap = {
   'Abyssal Sire': abyssalSire,
   'Alchemical Hydra': alchemicalHydra,
-  Amoxliatl:amoxliatl,
+  Amoxliatl: amoxliatl,
   Araxxor: araxxor,
   'Barbarian Assault': barbarianAssault,
   'Callisto and Artio': callistoAndArtio,
@@ -82,6 +83,7 @@ export const itemList: ItemCategoryMap = {
   'Major Slayer Items': majorSlayerItems,
   'Miscellaneous Items': miscellaneous,
   'Miscellaneous Wilderness Items': miscellaneousWildernessItems,
+  'Mage Training Arena': magicTrainingArena,
   Nex: nex,
   'The Nightmare': theNightmare,
   'Perilous Moons': perilousMoons,
