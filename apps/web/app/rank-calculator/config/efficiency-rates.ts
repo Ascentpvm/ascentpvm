@@ -11,7 +11,7 @@ export const ehbRates = {
   'Abyssal Sire': 44,
   'Alchemical Hydra': 29,
   Amoxliatl: 71,
-  Araxxor: 38,
+  Araxxor: 40,
   Artio: 50,
   'Barrows Chests': 22,
   Bryophyta: 9,
