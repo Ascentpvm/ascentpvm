@@ -32,6 +32,7 @@ export const dagannothKings: ItemCategory = {
     singleItem({
       name: 'Dragon axe',
       collectionLogCategory: 'dagannoth_kings',
+      points: 1,
     }),
     singleItem({
       name: 'Pet dagannoth prime',

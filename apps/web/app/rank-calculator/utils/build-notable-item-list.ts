@@ -17,44 +17,50 @@ const itemListChecksum = JSum.digest(itemList, 'SHA256', 'hex');
 const efficiencyDataChecksum = JSum.digest(efficiencyData, 'SHA256', 'hex');
 const itemPointMapChecksum = JSum.digest(itemPointMap, 'SHA256', 'hex');
 
-export const buildNotableItemList = unstable_cache(
-  // eslint-disable-next-line @typescript-eslint/require-await
-  async (dropRates: DroppedItemResponse) =>
-    Object.entries(itemList).reduce<ItemCategoryMap>((acc, [key, category]) => {
-      const items = category.items.map((item) => {
-        if (item.points) {
-          return item;
+// The core function without caching
+const buildNotableItemListCore = async (dropRates: DroppedItemResponse) =>
+  Object.entries(itemList).reduce<ItemCategoryMap>((acc, [key, category]) => {
+    const items = category.items.map((item) => {
+      if (item.points) {
+        return item;
+      }
+
+      if (isCollectionLogItem(item)) {
+        try {
+          return {
+            ...item,
+            points: calculateItemPoints(dropRates, item.requiredItems),
+          };
+        } catch (error) {
+          console.error(
+            `Error calculating points for item ${item.name}:`,
+            error,
+          )
+          Sentry.captureException(error);
+
+          return { ...item, hasPointsError: true };
         }
+      }
 
-        if (isCollectionLogItem(item)) {
-          try {
-            return {
-              ...item,
-              points: calculateItemPoints(dropRates, item.requiredItems),
-            };
-          } catch (error) {
-            console.error(
-              `Error calculating points for item ${item.name}:`,
-              error,
-            )
-            Sentry.captureException(error);
+      throw new Error(`Could not calculate item points for ${item.name}`);
+    }, []);
 
-            return { ...item, hasPointsError: true };
-          }
-        }
+    return {
+      ...acc,
+      [key]: { ...category, items: items as NonEmptyArray<Item> },
+    };
+  }, {});
 
-        throw new Error(`Could not calculate item points for ${item.name}`);
-      }, []);
 
-      return {
-        ...acc,
-        [key]: { ...category, items: items as NonEmptyArray<Item> },
-      };
-    }, {}),
-  [
-    `points-per-hour:${pointsConfig.notableItemsPointsPerHour}`,
-    `item-list:${itemListChecksum}`,
-    `efficiency-data:${efficiencyDataChecksum}`,
-    `item-point-map:${itemPointMapChecksum}`,
-  ],
-);
+// Conditionally apply caching based on environment
+export const buildNotableItemList = process.env.NODE_ENV === 'development'
+  ? buildNotableItemListCore // No caching in development
+  : unstable_cache( // Caching in production
+    buildNotableItemListCore,
+    [
+      `points-per-hour:${pointsConfig.notableItemsPointsPerHour}`,
+      `item-list:${itemListChecksum}`,
+      `efficiency-data:${efficiencyDataChecksum}`,
+      `item-point-map:${itemPointMapChecksum}`,
+    ],
+  );

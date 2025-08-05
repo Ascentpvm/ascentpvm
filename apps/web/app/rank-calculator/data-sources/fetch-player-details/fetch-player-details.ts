@@ -253,8 +253,6 @@ export async function fetchPlayerDetails(
       .filter(({ points }) => points > 0)
       .map(({ name }) => stripEntityName(name));
 
-    const isCompletionist = acquiredItems.length === itemsThatGivePoints.length;
-
     const previouslyAcquiredItems = savedData
       ? Object.keys(savedData.acquiredItems).filter(
         (key) => savedData.acquiredItems[key],
@@ -281,6 +279,15 @@ export async function fetchPlayerDetails(
       (acc, val) => ({ ...acc, [stripEntityName(val)]: true }),
       { ...(hasMusicCape && { 'Music cape': true }) },
     );
+
+    let isCompletionist = true;
+
+    // Check if the player has items that give points
+    for (const item of itemsThatGivePoints) {
+      if (acquiredItemsMap[item] !== true) {
+        isCompletionist = false;
+      }
+    }
 
     const proofLink =
       savedData?.proofLink ??

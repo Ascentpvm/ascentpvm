@@ -100,7 +100,7 @@ export const publishRankSubmissionAction = authActionClient
       } = playerDetails;
 
       const { channelId } = serverConstants.discord;
-      const roleId = '1387236150397370409';
+      const roleId = '1395458839859560573';
       const submissionId = randomUUID();
       const { id: discordMessageId } = await sendDiscordMessage(
         {
