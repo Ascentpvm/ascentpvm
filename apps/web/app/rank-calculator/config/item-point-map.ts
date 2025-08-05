@@ -90,6 +90,14 @@ export const dropRateOverrides: Record<string, number> = {
 export const itemPointOverrides: Partial<Record<CollectionLogItemName, number>> = {
   'Rite of vile transference': 5,
   'Earthbound tecpatl': 2,
+  'Beaver': 0,
+  'Heron': 0,
+  'Rift guardian': 0,
+  'Baby chinchompa': 0,
+  'Giant squirrel': 0,
+  'Rock golem': 0,
+  'Rocky': 0,
+  'Dragon chainbody': 4,
 };
 
 /**
