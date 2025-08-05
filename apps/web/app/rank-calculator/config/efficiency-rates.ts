@@ -17,7 +17,7 @@ export const ehbRates = {
   Bryophyta: 9,
   Callisto: 135,
   "Calvar'ion": 45,
-  Cerberus: 54,
+  Cerberus: 260,
   'Chambers of Xeric': 3.5,
   'Chambers of Xeric Challenge Mode': 3,
   'Chaos Elemental': 48,
@@ -71,7 +71,7 @@ export const ehbRates = {
   "Vet'ion": 39,
   Vorkath: 34,
   Wintertodt: 12,
-  Yama: 18,
+  Yama: 20,
   Zalcano: 40,
   Zulrah: 39,
 
@@ -93,7 +93,7 @@ export const ehbRates = {
   'Lizardman shaman': 180, // Assuming cannoning in the Lizardman Canyon https://oldschool.runescape.wiki/w/Money_making_guide/Killing_Lizardman_Shamans_(Canyon)
   'LMS Points': 25,
   'Master Clue': 1,
-  'Medium Clue': 10.6, // Assuming an average of 180 implings caught per hour and 5 minutes spent per clue
+  'Medium Clue': 15.6, // Assuming an average of 180 implings caught per hour and 5 minutes spent per clue
   'Revenant ork': 50, // https://oldschool.runescape.wiki/w/Money_making_guide/Killing_revenants_(Craw%27s_bow)
   'Revenant ork#On-task': 50, // https://oldschool.runescape.wiki/w/Money_making_guide/Killing_revenants_(Craw%27s_bow)
   Skotizo: 1, // Temple doesn't account for the time taken to gather totems, assuming 1 totem acquired per hour
