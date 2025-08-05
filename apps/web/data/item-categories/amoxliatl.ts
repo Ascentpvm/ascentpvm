@@ -8,12 +8,12 @@ export const amoxliatl: ItemCategory = {
     singleItem({
       name: 'Glacial temotli',
       collectionLogCategory: 'amoxliatl',
-      targetDropSources: ['amoxliatl']
+      targetDropSources: ['Amoxliatl']
     }),
     singleItem({
       name: 'Pendant of ates (inert)',
       collectionLogCategory: 'amoxliatl',
-      targetDropSources: ['amoxliatl']
+      targetDropSources: ['Amoxliatl']
     }),
     singleItem({
       name: 'Moxi',
