@@ -22,6 +22,18 @@ export const dagannothKings: ItemCategory = {
       collectionLogCategory: 'dagannoth_kings',
     }),
     singleItem({
+      name: 'Seercull',
+      collectionLogCategory: 'dagannoth_kings',
+    }),
+    singleItem({
+      name: 'Mud battlestaff',
+      collectionLogCategory: 'dagannoth_kings',
+    }),
+    singleItem({
+      name: 'Dragon axe',
+      collectionLogCategory: 'dagannoth_kings',
+    }),
+    singleItem({
       name: 'Pet dagannoth prime',
       collectionLogCategory: 'dagannoth_kings',
     }),
