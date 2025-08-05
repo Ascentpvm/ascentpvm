@@ -8,6 +8,7 @@ import { useFormState, useWatch } from 'react-hook-form';
 import { RankCalculatorSchema } from '@/app/rank-calculator/[player]/submit-rank-calculator-validation';
 import { handleToastUpdates } from '@/app/rank-calculator/utils/handle-toast-updates';
 import { approveSubmissionAction } from '../approve-submission-action';
+import { toast } from 'react-toastify';
 
 interface ApproveSubmissionButtonProps {
   playerName: string;
@@ -90,6 +91,10 @@ export function ApproveSubmissionButton({
           </AlertDialog.Cancel>
           <AlertDialog.Action
             onClick={() => {
+              if (!rank) {
+                toast.error('You are not eligible for a rank!');
+                return;
+              }
               void handleToastUpdates(
                 approveSubmission({
                   submissionId,

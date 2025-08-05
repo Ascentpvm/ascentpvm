@@ -68,6 +68,7 @@ export const emptyResponse = {
   combatAchievementTier: 'None',
   ehb: 0,
   ehp: 0,
+  ehc: 0,
   totalLevel: 0,
   playerName: '',
   rankStructure: 'Standard',
@@ -79,6 +80,10 @@ export const emptyResponse = {
   isTempleCollectionLogOutdated: false,
   isMobileOnly: false,
   tzhaarCape: 'None',
+  tobKillCount: 0,
+  toaExpertKillCount: 0,
+  slayerLevel: 1,
+  chambersOfXericCmKillCount: 0,
   hasBloodTorva: false,
   hasRadiantOathplate: false,
   hasDizanasQuiver: false,
@@ -191,10 +196,14 @@ export async function fetchPlayerDetails(
       Clue_hard: hardClueCount = null,
       Clue_elite: eliteClueCount = null,
       Clue_master: masterClueCount = null,
+      'Chambers of Xeric Challenge Mode': chambersCmKillCount = null,
+      'Theatre of Blood': tobKillCount = null,
+      'Tombs of Amascut Expert': toaExpertKillCount = null,
+      Slayer_level: slayerLevel = null,
     } = templePlayerStats ?? {};
     const { ehb, ehp } = calculateEfficiencyData(templePlayerStats);
 
-    const { total_collections_finished: templeCollectionLogCount = null } =
+    const { total_collections_finished: templeCollectionLogCount = null, ehc: templeEfficientHoursClogged = null } =
       templeCollectionLog ?? {};
 
     const isTempleCollectionLogOutdated =
@@ -323,6 +332,7 @@ export async function fetchPlayerDetails(
         ),
         ehb: Math.round(ehb ?? savedData?.ehb ?? 0),
         ehp: Math.round(ehp ?? savedData?.ehp ?? 0),
+        ehc: Math.round(templeEfficientHoursClogged ?? savedData?.ehc ?? 0),
         totalLevel: Math.max(totalLevel ?? 0, savedData?.totalLevel ?? 0),
         collectionLogTotal,
         joinDate,
@@ -331,6 +341,12 @@ export async function fetchPlayerDetails(
         proofLink,
         currentRank,
         tzhaarCape: mergeTzhaarCapes(tzhaarCape, savedData?.tzhaarCape),
+        tobKillCount: tobKillCount ?? savedData?.tobKillCount ?? 0,
+        toaExpertKillCount:
+          toaExpertKillCount ?? savedData?.toaExpertKillCount ?? 0,
+        slayerLevel: slayerLevel ?? savedData?.slayerLevel ?? 1,
+        chambersOfXericCmKillCount:
+          chambersCmKillCount ?? savedData?.chambersOfXericCmKillCount ?? 0,
         hasBloodTorva: (hasBloodTorva || savedData?.hasBloodTorva) ?? false,
         hasRadiantOathplate: savedData?.hasRadiantOathplate ?? false,
         hasDizanasQuiver:

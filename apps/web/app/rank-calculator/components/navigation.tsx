@@ -67,13 +67,13 @@ export function Navigation({
                 <Text weight="medium">Rank:</Text>{' '}
                 <Text color="gray">{rankName}</Text>
                 <Box asChild display="inline-block">
-                  <Image
+                  {rank ? <Image
                     alt={`${rank} icon`}
                     src={getRankImageUrl(rank)}
                     width={18}
                     height={18}
                     unoptimized
-                  />
+                  />: null}
                 </Box>
               </Flex>
               <Text as="div">

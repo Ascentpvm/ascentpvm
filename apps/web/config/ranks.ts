@@ -5,7 +5,6 @@ import type {
   CollectionLogItemName,
   CombatAchievementTier,
 } from '@/app/schemas/osrs';
-
 export const rankNames: Partial<Record<Rank, string>> = {};
 
 export const StandardRank = Rank.extract([
@@ -28,6 +27,35 @@ export const ClogRank = Rank.extract([
 ])
 export type StandardRank = z.infer<typeof StandardRank>;
 export type ClogRank = z.infer<typeof ClogRank>;
+
+export const rankEhcThresholds: Record<
+  RankStructure,
+  Partial<Record<Rank, number>>
+> = {
+  Clog: {
+    'Scribe': 0,
+    'Learner': 2600,
+    'Teacher': 2900,
+    'Councillor': 3200,
+    'Assistant': 3200
+  },
+  Standard: {
+    Sapphire: 0,
+    Emerald: 0,
+    'Red Topaz': 0,
+    Zenyte: 0,
+    Captain: 0,
+    Astral: 0,
+    Soul: 0,
+    Completionist: 0,
+  },
+  'Deputy Owner': {
+    'Deputy Owner': 0,
+  },
+  Staff: {
+    Serenist: 0,
+  }
+} as const;
 
 export const rankThresholds: Record<
   RankStructure,
@@ -81,3 +109,33 @@ export const rankRequiredItems: Partial<
 export const rankRequiredCombatAchievements: Partial<
   Record<Rank, CombatAchievementTier>
 > = {};
+
+
+/**
+ * Maps the required Boss Kill counts needed to achieve each rank.
+ */
+export const rankRequiredBossKills: Partial<Record<Rank, {
+  toaExpertKillCount: number;
+  chambersOfXericCmKillCount: number;
+  tobKillCount: number;
+}>> = {
+  Sapphire: {
+    toaExpertKillCount: 100,
+    chambersOfXericCmKillCount: 25,
+    tobKillCount: 100
+  },
+  Scribe: {
+    toaExpertKillCount: 100,
+    chambersOfXericCmKillCount: 25,
+    tobKillCount: 100
+  }
+};
+
+/**
+ * Maps required levels for each rank.
+ */
+
+export const rankRequiredSlayerLevel: Partial<Record<Rank, number>> = {
+  Sapphire: 95,
+  Scribe: 95,
+};

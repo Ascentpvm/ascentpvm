@@ -19,7 +19,7 @@ import { getRankName } from '../../utils/get-rank-name';
 import { getPointsRemainingLabel } from '../../utils/get-points-remaining-label';
 import { formatNumber } from '../../utils/format-number';
 import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
-import {useWatch} from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
 import { RankStructureInfoModal } from '../rank-structure-info-modal';
 import { getRankImageUrl } from '../../utils/get-rank-image-url';
 import { useCurrentPlayer } from '../../contexts/current-player-context';
@@ -48,7 +48,10 @@ export function RankProgressCard() {
   const rankStructure = useWatch<RankCalculatorSchema, 'rankStructure'>({
     name: 'rankStructure',
   });
-  const collectionLogCount = useWatch<RankCalculatorSchema, 'collectionLogCount'>({
+  const collectionLogCount = useWatch<
+    RankCalculatorSchema,
+    'collectionLogCount'
+  >({
     name: 'collectionLogCount',
   });
 
@@ -70,7 +73,7 @@ export function RankProgressCard() {
     <>
       <input
         {...register('rank', { value: rank })}
-        defaultValue={rank}
+        defaultValue={rank ?? 'Unranked'}
         type="hidden"
       />
       <input
@@ -84,21 +87,27 @@ export function RankProgressCard() {
             left={
               <Flex direction="column">
                 <Text size="2" color="gray" id="total-points-label">
-                  Total {rankStructure == 'Standard' ? 'points' : 'collection log slots'}
+                  Total{' '}
+                  {rankStructure == 'Standard'
+                    ? 'points'
+                    : 'collection log slots'}
                 </Text>
                 <Text
                   aria-labelledby="total-points-label"
                   size="3"
                   weight="medium"
                 >
-                  {rankStructure == 'Standard' ? formatNumber(pointsAwarded) : formatNumber(collectionLogCount)}
+                  {rankStructure == 'Standard'
+                    ? formatNumber(pointsAwarded)
+                    : formatNumber(collectionLogCount)}
                 </Text>
               </Flex>
             }
             right={
               <Flex direction="column" align="end">
                 <Text size="2" color="gray" id="points-to-next-rank-label">
-                  {rankStructure == 'Standard' ? 'Points' : 'Clogs'} to next rank
+                  {rankStructure == 'Standard' ? 'Points' : 'Clogs'} to next
+                  rank
                 </Text>
                 <Text
                   aria-labelledby="points-to-next-rank-label"
@@ -119,13 +128,15 @@ export function RankProgressCard() {
               <Text aria-label="Current rank" color="gray" size="2">
                 {rankName}
               </Text>
-              <Image
-                alt={`${rank} icon`}
-                src={getRankImageUrl(rank)}
-                width={22}
-                height={22}
-                unoptimized
-              />
+              {rank ? (
+                <Image
+                  alt={`${rank} icon`}
+                  src={getRankImageUrl(rank)}
+                  width={22}
+                  height={22}
+                  unoptimized
+                />
+              ) : null}
             </Flex>
             <Flex gap="2" align="center">
               {nextRank && (
@@ -180,10 +191,13 @@ export function RankProgressCard() {
             </Dialog.Close>
             <Dialog.Close
               onClick={() => {
+                if (rankName === 'Unranked') {
+                  return
+                }
                 void handleToastUpdates(
                   publishRankSubmission({
                     totalPoints: pointsAwarded,
-                    rank,
+                    rank: rank!,
                   }),
                   { success: 'Rank application submitted!' },
                 );

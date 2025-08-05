@@ -2,7 +2,7 @@ import { formatNumber } from './format-number';
 
 export function getPointsRemainingLabel(
   pointsRemaining: number,
-  throttleReason?: 'items' | 'Master CAs' | null,
+  throttleReason?: 'boss kc' | 'items' | 'Master CAs' | 'slayer level' | null,
 ) {
   if (throttleReason === 'items') {
     return 'Items required!';
@@ -11,6 +11,15 @@ export function getPointsRemainingLabel(
   if (throttleReason === 'Master CAs') {
     return 'Master CAs required!';
   }
+
+  if (throttleReason === 'slayer level') {
+    return '95 Slayer Required!';
+  }
+
+  if (throttleReason === 'boss kc') {
+    return 'Boss KC required!';
+  }
+
 
   return pointsRemaining ? `(${formatNumber(pointsRemaining)})` : 'Completed';
 }

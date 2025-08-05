@@ -44,9 +44,7 @@ export async function fetchTemplePlayerCollectionLog(player: string) {
       `${clientConstants.temple.baseUrl}/api/collection-log/player_collection_log.php?${collectionLogQueryParams}`,
     );
 
-    return TempleOSRSPlayerCollectionLog.parse(
-      await collectionLogResponse.json(),
-    ).data;
+    return TempleOSRSPlayerCollectionLog.parse(await collectionLogResponse.json()).data;
   } catch {
     Sentry.captureMessage('TempleOSRS collection log not found', 'info');
 
