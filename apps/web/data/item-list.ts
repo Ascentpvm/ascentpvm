@@ -56,7 +56,7 @@ import { zulrah } from './item-categories/zulrah';
 export const itemList: ItemCategoryMap = {
   'Abyssal Sire': abyssalSire,
   'Alchemical Hydra': alchemicalHydra,
-  Amoxliatl:amoxliatl,
+  Amoxliatl: amoxliatl,
   Araxxor: araxxor,
   'Barbarian Assault': barbarianAssault,
   'Callisto and Artio': callistoAndArtio,
@@ -83,6 +83,7 @@ export const itemList: ItemCategoryMap = {
   'Major Slayer Items': majorSlayerItems,
   'Miscellaneous Items': miscellaneous,
   'Miscellaneous Wilderness Items': miscellaneousWildernessItems,
+  'Mage Training Arena': magicTrainingArena,
   Nex: nex,
   'The Nightmare': theNightmare,
   'Perilous Moons': perilousMoons,
