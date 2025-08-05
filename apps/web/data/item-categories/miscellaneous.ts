@@ -29,7 +29,11 @@ export const miscellaneous: ItemCategory = {
     singleItem({
       name: 'Dragon chainbody',
       collectionLogCategory: 'slayer',
-    }),    
+    }),
+    singleItem({
+      name: 'Earthbound tecpatl',
+      collectionLogCategory: 'slayer',
+    }),     
     singleItem({
       name: 'Swift blade',
       points: calculateXpOrTimeBasedItemPoints(
