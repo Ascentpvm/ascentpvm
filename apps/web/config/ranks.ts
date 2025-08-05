@@ -139,3 +139,22 @@ export const rankRequiredSlayerLevel: Partial<Record<Rank, number>> = {
   Sapphire: 95,
   Scribe: 95,
 };
+
+export const rankRequiredTimeInClan: Partial<Record<Rank, number>> = {
+  Sapphire: 0,
+  Emerald: 30,
+  'Red Topaz': 30,
+  Zenyte: 30,
+  Captain: 90,
+  Astral: 90,
+  Soul: 180,
+  Completionist: 180,
+  Scribe: 0,
+  Learner: 30,
+  Teacher: 90,
+  Councillor: 90,
+  Assistant: 180,
+};
+
+
+export const ranksThatRequireAscentCompletionist: Partial<Rank[]> = ['Completionist']

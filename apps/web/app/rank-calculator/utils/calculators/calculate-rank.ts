@@ -7,15 +7,18 @@ import {
   rankRequiredSlayerLevel,
   rankThresholds,
   rankEhcThresholds,
+  rankRequiredTimeInClan,
+  ranksThatRequireAscentCompletionist,
 } from '@/config/ranks';
 import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
 import { CollectionLogItemName, CombatAchievementTier } from '@/app/schemas/osrs';
 import { useWatch } from 'react-hook-form';
+import { nex } from '@/data/item-categories/nex';
 
 export interface RankData {
   rank: Rank | null;
   nextRank: Rank | null;
-  throttleReason: 'slayer level' | 'boss kc' | 'items' | 'Master CAs' | null;
+  throttleReason: 'completionist' | 'join date' | 'slayer level' | 'boss kc' | 'items' | 'Master CAs' | null;
 }
 
 export function calculateRank(
@@ -57,6 +60,14 @@ export function calculateRank(
     name: 'ehc',
   });
 
+  const joinDate = useWatch<RankCalculatorSchema, 'joinDate'>({
+    name: 'joinDate',
+  });
+
+  const isCompletionist = useWatch<RankCalculatorSchema, 'isCompletionist'>({
+    name: 'isCompletionist',
+  });
+
   const playerBossKillCounts = {
     chambersOfXericCmKillCount,
     toaExpertKillCount,
@@ -65,7 +76,7 @@ export function calculateRank(
 
   let currentRank: Rank | null = null;
   let nextRank: Rank | null = null;
-  let throttleReason: 'slayer level' | 'boss kc' | 'items' | 'Master CAs' | null = null;
+  let throttleReason: 'completionist' | 'join date' | 'slayer level' | 'boss kc' | 'items' | 'Master CAs' | null = null;
 
   const effectivePoints =
     rankStructure === 'Clog' ? collectionLogSlots : pointsAwarded;
@@ -81,15 +92,20 @@ export function calculateRank(
 
     if (rankStructure === "Clog") {
       if (effectivePoints < threshold && ehc < rankEhcThreshold) {
+        nextRank = rank;
+        throttleReason = 'items';
         break;
       }
     }
 
     if (effectivePoints < threshold) {
+      nextRank = rank;
+      throttleReason = 'items';
       break;
     }
 
     const missingItems: CollectionLogItemName[] = [];
+    const hasCompletionistReq = ranksThatRequireAscentCompletionist.includes(rank) ? isCompletionist : true;
     const hasRequiredItems =
       rankRequiredItems[rank]?.some((itemRequirements) => {
         const isRequirementMet = itemRequirements.every((item) => {
@@ -126,6 +142,22 @@ export function calculateRank(
     const hasRequiredSlayerLevel = rankRequiredSlayerLevel[rank]
       ? slayerLevel >= rankRequiredSlayerLevel[rank]
       : true;
+
+    const hasRequiredTimeInClan = rankRequiredTimeInClan[rank]
+      ? (new Date().getTime() - new Date(joinDate).getTime()) / (1000 * 60 * 60 * 24) >= rankRequiredTimeInClan[rank]
+      : true;
+
+    if (!hasCompletionistReq) {
+      throttleReason = 'completionist';
+      nextRank = rank;
+      break;
+    }
+
+    if (!hasRequiredTimeInClan) {
+      throttleReason = 'join date';
+      nextRank = rank;
+      break;
+    }
 
     if (!hasRequiredItems) {
       throttleReason = 'items';

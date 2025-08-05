@@ -2,8 +2,14 @@ import { formatNumber } from './format-number';
 
 export function getPointsRemainingLabel(
   pointsRemaining: number,
-  throttleReason?: 'boss kc' | 'items' | 'Master CAs' | 'slayer level' | null,
+  throttleReason?: 'completionist' | 'join date' | 'boss kc' | 'items' | 'Master CAs' | 'slayer level' | null,
 ) {
+  if (throttleReason === 'completionist') {
+    return 'Completionist required!';
+  }
+  if (throttleReason === 'join date') {
+    return 'Need more time in the clan!';
+  }
   if (throttleReason === 'items') {
     return 'Items required!';
   }
