@@ -1,6 +1,7 @@
 import { ItemCategoryMap } from '@/app/schemas/items';
 import { abyssalSire } from './item-categories/abyssal-sire';
 import { alchemicalHydra } from './item-categories/alchemical-hydra';
+import { amoxliatl } from './item-categories/Amoxliatl';
 import { araxxor } from './item-categories/araxxor';
 import { barbarianAssault } from './item-categories/barbarian-assault';
 import { callistoAndArtio } from './item-categories/callisto-and-artio';
@@ -54,6 +55,7 @@ import { zulrah } from './item-categories/zulrah';
 export const itemList: ItemCategoryMap = {
   'Abyssal Sire': abyssalSire,
   'Alchemical Hydra': alchemicalHydra,
+  Amoxliatl:Amoxliatl,
   Araxxor: araxxor,
   'Barbarian Assault': barbarianAssault,
   'Callisto and Artio': callistoAndArtio,
