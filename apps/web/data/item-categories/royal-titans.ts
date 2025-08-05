@@ -18,6 +18,7 @@ export const royalTitans: ItemCategory = {
     singleItem({
       name: 'Giantsoul amulet (uncharged)',
       collectionLogCategory: 'royal_titans',
+      points: 1,
     }),
     compoundItem({
       name: 'Twinflame staff',
