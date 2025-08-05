@@ -1,11 +1,10 @@
 import {
-  estimatedHoursToObtainAbyssalWhip,
   estimatedHoursForImbuedHeart,
 } from '@/app/rank-calculator/config/efficiency-rates';
 import { calculateXpOrTimeBasedItemPoints } from '@/app/rank-calculator/utils/calculate-xp-or-time-based-item-points';
 import { formatWikiImageUrl } from '@/app/rank-calculator/utils/format-wiki-url';
 import { ItemCategory } from '@/app/schemas/items';
-import { singleItem, compoundItem } from '../utils/item-builders';
+import { singleItem } from '../utils/item-builders';
 
 export const majorSlayerItems: ItemCategory = {
   image: formatWikiImageUrl('Slayer icon (detail)', 'category'),
