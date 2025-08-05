@@ -1197,6 +1197,7 @@ export const CollectionLogItemName = z.enum([
   'White unicorn mask',
   'Cabbage round shield',
   'Gnomish firelighter',
+  'Earthbound tecpatl',
   'Evil chicken feet',
   'Evil chicken wings',
   'Evil chicken head',
