@@ -25,6 +25,7 @@ import { kraken } from './item-categories/kraken';
 import { krearra } from './item-categories/krearra';
 import { krilTsutsaroth } from './item-categories/kril-tsutsaroth';
 import { majorSlayerItems } from './item-categories/major-slayer-items';
+import { magicTrainingArena } from './item-categories/mage-arena';
 import { miscellaneous } from './item-categories/miscellaneous';
 import { miscellaneousWildernessItems } from './item-categories/miscellaneous-wilderness-items';
 import { nex } from './item-categories/nex';
