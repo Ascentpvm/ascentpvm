@@ -55,7 +55,7 @@ import { zulrah } from './item-categories/zulrah';
 export const itemList: ItemCategoryMap = {
   'Abyssal Sire': abyssalSire,
   'Alchemical Hydra': alchemicalHydra,
-  Amoxliatl:Amoxliatl,
+  Amoxliatl:amoxliatl,
   Araxxor: araxxor,
   'Barbarian Assault': barbarianAssault,
   'Callisto and Artio': callistoAndArtio,
