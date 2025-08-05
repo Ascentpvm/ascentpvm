@@ -70,6 +70,7 @@ export const emptyResponse = {
   ehp: 0,
   ehc: 0,
   totalLevel: 0,
+  isCompletionist: false,
   playerName: '',
   rankStructure: 'Standard',
   proofLink: null,
@@ -247,6 +248,13 @@ export async function fetchPlayerDetails(
           .map(({ name }) => stripEntityName(name))
         : [];
 
+    const itemsThatGivePoints = Object.values(itemList)
+      .flatMap(({ items }) => items)
+      .filter(({ points }) => points > 0)
+      .map(({ name }) => stripEntityName(name));
+
+    const isCompletionist = acquiredItems.length === itemsThatGivePoints.length;
+
     const previouslyAcquiredItems = savedData
       ? Object.keys(savedData.acquiredItems).filter(
         (key) => savedData.acquiredItems[key],
@@ -332,6 +340,7 @@ export async function fetchPlayerDetails(
         ),
         ehb: Math.round(ehb ?? savedData?.ehb ?? 0),
         ehp: Math.round(ehp ?? savedData?.ehp ?? 0),
+        isCompletionist,
         ehc: Math.round(templeEfficientHoursClogged ?? savedData?.ehc ?? 0),
         totalLevel: Math.max(totalLevel ?? 0, savedData?.totalLevel ?? 0),
         collectionLogTotal,

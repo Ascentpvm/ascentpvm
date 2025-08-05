@@ -1,6 +1,7 @@
 import { ItemCategoryMap } from '@/app/schemas/items';
 import { abyssalSire } from './item-categories/abyssal-sire';
 import { alchemicalHydra } from './item-categories/alchemical-hydra';
+import { amoxliatl } from './item-categories/amoxliatl';
 import { araxxor } from './item-categories/araxxor';
 import { barbarianAssault } from './item-categories/barbarian-assault';
 import { callistoAndArtio } from './item-categories/callisto-and-artio';
@@ -45,18 +46,17 @@ import { thermonuclearSmokeDevil } from './item-categories/thermonuclear-smoke-d
 import { tombsOfAmascut } from './item-categories/tombs-of-amascut';
 import { tormentedDemons } from './item-categories/tormented-demons';
 import { treasureTrails } from './item-categories/treasure-trails';
-import { tzHaar } from './item-categories/tzhaar';
 import { venenatisAndSpindel } from './item-categories/venenatis-and-spindel';
 import { vetionAndCalvarion } from './item-categories/vetion-and-calvarion';
 import { visages } from './item-categories/visages';
 import { vorkath } from './item-categories/vorkath';
 import { yama } from './item-categories/yama';
-import { zalcano } from './item-categories/zalcano';
 import { zulrah } from './item-categories/zulrah';
 
 export const itemList: ItemCategoryMap = {
   'Abyssal Sire': abyssalSire,
   'Alchemical Hydra': alchemicalHydra,
+  Amoxliatl:amoxliatl,
   Araxxor: araxxor,
   'Barbarian Assault': barbarianAssault,
   'Callisto and Artio': callistoAndArtio,
@@ -100,12 +100,10 @@ export const itemList: ItemCategoryMap = {
   'Tombs of Amascut': tombsOfAmascut,
   'Tormented Demons': tormentedDemons,
   'Treasure Trails': treasureTrails,
-  TzHaar: tzHaar,
   'Venenatis and Spindel': venenatisAndSpindel,
   "Vet'ion and Calvar'ion": vetionAndCalvarion,
   Visages: visages,
   Vorkath: vorkath,
   Yama: yama,
-  Zalcano: zalcano,
   Zulrah: zulrah,
 } satisfies ItemCategoryMap;

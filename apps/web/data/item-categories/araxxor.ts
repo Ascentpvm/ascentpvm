@@ -1,5 +1,5 @@
 import { ItemCategory } from '@/app/schemas/items';
-import { singleItem, compoundItem } from '../utils/item-builders';
+import { singleItem } from '../utils/item-builders';
 
 export const araxxor: ItemCategory = {
   items: [

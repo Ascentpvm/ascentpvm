@@ -46,7 +46,8 @@ export const theNightmare: ItemCategory = {
       targetDropSources: ["Phosani's Nightmare"],
     }),
     singleItem({
-      name: 'Parasitic egg',
+      name: 'Slepey tablet',
+      clogName: 'Slepey tablet',
       collectionLogCategory: 'the_nightmare',
       targetDropSources: ["Phosani's Nightmare"],
     }),

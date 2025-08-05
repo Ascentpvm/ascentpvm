@@ -43,18 +43,6 @@ export const theatreOfBlood: ItemCategory = {
       targetDropSources: ['Monumental chest#Normal Mode'],
     }),
     singleItem({
-      name: 'Holy ornament kit',
-      collectionLogCategory: 'theatre_of_blood',
-    }),
-    singleItem({
-      name: 'Sanguine ornament kit',
-      collectionLogCategory: 'theatre_of_blood',
-    }),
-    singleItem({
-      name: 'Sanguine dust',
-      collectionLogCategory: 'theatre_of_blood',
-    }),
-    singleItem({
       name: "Lil' zik",
       collectionLogCategory: 'theatre_of_blood',
     }),
