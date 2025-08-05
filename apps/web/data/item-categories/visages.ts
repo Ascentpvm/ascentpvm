@@ -18,12 +18,5 @@ export const visages: ItemCategory = {
       image: formatWikiImageUrl('Dragonfire ward'),
       collectionLogCategory: 'vorkath',
     }),
-    singleItem({
-      name: 'Ancient wyvern shield',
-      clogName: 'Wyvern visage',
-      image: formatWikiImageUrl('Ancient wyvern shield'),
-      collectionLogCategory: 'slayer',
-      targetDropSources: ['Spitting Wyvern'],
-    }),
   ],
 };
