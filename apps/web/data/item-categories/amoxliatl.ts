@@ -10,7 +10,7 @@ export const amoxliatl: ItemCategory = {
       collectionLogCategory: 'amoxliatl',
     }),
     singleItem({
-      name: 'Pendant of ates',
+      name: 'Pendant of ates (inert)',
       collectionLogCategory: 'amoxliatl',
     }),
     singleItem({
