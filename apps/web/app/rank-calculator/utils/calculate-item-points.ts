@@ -5,6 +5,8 @@ import {
   pointModifiers,
   collectionLogItemBossNameMap,
   groupSizes,
+  dropRateOverrides,
+  itemPointOverrides,
 } from '@/app/rank-calculator/config/item-point-map';
 import { RequiredItem } from '@/app/schemas/items';
 import Decimal from 'decimal.js-light';
@@ -43,6 +45,8 @@ function calculatePointsForSingleDropSource(
   const pointModifier = pointModifiers[itemName] ?? 1;
   const groupSize = groupSizes[bossName] ?? 1;
 
+  const dropRateToUse = dropRateOverrides[itemName] ?? itemDropRate;
+
   if (!bossEhb) {
     console.warn(
       dedent`
@@ -56,7 +60,7 @@ function calculatePointsForSingleDropSource(
   }
 
   return new Decimal(1)
-    .dividedBy(new Decimal(itemDropRate).times(dropRateModifier).div(groupSize))
+    .dividedBy(new Decimal(dropRateToUse).times(dropRateModifier).div(groupSize))
     .dividedBy(bossEhb)
     .times(pointsConfig.notableItemsPointsPerHour)
     .times(pointModifier)
@@ -68,6 +72,14 @@ export function calculateItemPoints(
   dropRateInfo: DroppedItemResponse,
   items: NonEmptyArray<RequiredItem>,
 ): number {
+  const override = itemPointOverrides[items[0].clogName] ?? false;
+
+  if (override) {
+    console.log(
+      `Using override for ${items[0].clogName}: ${override}`,
+    );
+    return override
+  }
   const rawPoints = items.reduce(
     (
       acc,

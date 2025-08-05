@@ -79,6 +79,19 @@ export const dropRateModifiers: Record<string, number> = {
   'Chewed bones': 1 / 42.67,
 };
 
+export const dropRateOverrides: Record<string, number> = {
+  'Tonalztics of ralos (uncharged)': 1 / 83,
+  'Echo crystal': 1 / 12,
+  'Sunfire fanatic helm': 1 / 8,
+  'Sunfire fanatic cuirass': 1 / 8,
+  'Sunfire fanatic chausses': 1 / 8,
+};
+
+export const itemPointOverrides: Partial<Record<CollectionLogItemName, number>> = {
+  'Rite of vile transference': 5,
+  'Earthbound tecpatl': 2,
+};
+
 /**
  * Some content is expected to be completed in a group to be the most efficient,
  * meaning the player will only receive a fraction of the loot.

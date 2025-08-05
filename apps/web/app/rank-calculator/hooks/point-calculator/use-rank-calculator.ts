@@ -59,8 +59,6 @@ export function useRankCalculator() {
     ? nextRankThreshold - pointsAwarded
     : pointsAwarded;
 
-  console.log(nextRank, pointsRemaining)
-
   const pointsAwardedPercentage = nextRankThreshold
     ? (pointsAwarded - currentRankThreshold) /
     (nextRankThreshold - currentRankThreshold)
