@@ -23,14 +23,13 @@ export const miscellaneous: ItemCategory = {
   image: formatWikiImageUrl('Inventory', 'category'),
   items: [
     singleItem({
-      name: "Bryophyta's essence",
-      collectionLogCategory: 'bryophyta',
-      targetDropSources: ["Chest (Bryophyta's lair)#Members"]
-    }),
-    singleItem({
       name: 'Dragon warhammer',
       collectionLogCategory: 'miscellaneous',
     }),
+    singleItem({
+      name: 'Dragon chainbody',
+      collectionLogCategory: 'slayer',
+    }),    
     singleItem({
       name: 'Swift blade',
       points: calculateXpOrTimeBasedItemPoints(
