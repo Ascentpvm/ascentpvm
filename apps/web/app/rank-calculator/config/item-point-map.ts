@@ -221,18 +221,18 @@ export const rarityOverrides: Partial<Record<CollectionLogItemName, number>> = {
   'Smol heredit': 1 / 100.25, // Assuming the player exchanges a Dizana's Quiver for an additional 1/200 roll
   Phoenix: 1 / 2500, // Assuming the player achieves 500 points per game, equivalent to 2 rolls
   "Tumeken's shadow (uncharged)": 1 / 425, // Assuming a duo 400 invocation level raid with Walk the Path enabled
-  'Masori mask': 1 / 144.9,
-  'Masori body': 1 / 144.9,
-  'Masori chaps': 1 / 144.9,
-  "Elidinis' ward": 1 / 96.6,
-  Lightbearer: 1 / 41.4,
+  'Masori mask': 1 / 244.9,
+  'Masori body': 1 / 244.9,
+  'Masori chaps': 1 / 244.9,
+  "Elidinis' ward": 1 / 162,
+  Lightbearer: 1 / 63.4,
   "Tumeken's guardian": 1 / 338.1,
   'Jewel of the sun': 1 / 20, // The drop rate of any gem increases to 1 / 20 at 270 kc
   'Breach of the scarab': 1 / 20, // The drop rate of any gem increases to 1 / 20 at 270 kc
   'Eye of the corruptor': 1 / 20, // The drop rate of any gem increases to 1 / 20 at 270 kc
   'Jewel of amascut': 1 / 20, // The drop rate of any gem increases to 1 / 20 at 270 kc
   get "Osmumten's fang"() {
-    return 1 / 41.4;
+    return 1 / 63.4;
   },
   get 'Masori crafting kit'() {
     return this["Osmumten's fang"];
