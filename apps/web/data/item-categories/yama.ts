@@ -33,7 +33,7 @@ export const yama: ItemCategory = {
     singleItem({
       name: 'Yami',
       collectionLogCategory: 'yama',
-      targetDropSources: ['Yama'],
+      targetDropSources: ['Dossier'],
     }),
   ],
 };

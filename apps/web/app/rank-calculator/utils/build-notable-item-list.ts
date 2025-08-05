@@ -33,6 +33,10 @@ export const buildNotableItemList = unstable_cache(
               points: calculateItemPoints(dropRates, item.requiredItems),
             };
           } catch (error) {
+            console.error(
+              `Error calculating points for item ${item.name}:`,
+              error,
+            )
             Sentry.captureException(error);
 
             return { ...item, hasPointsError: true };
