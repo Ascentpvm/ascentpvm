@@ -8,7 +8,7 @@ import { useFormState, useWatch } from 'react-hook-form';
 import { RankCalculatorSchema } from '@/app/rank-calculator/[player]/submit-rank-calculator-validation';
 import { handleToastUpdates } from '@/app/rank-calculator/utils/handle-toast-updates';
 import { approveSubmissionAction } from '../approve-submission-action';
-import { toast } from 'node_modules/react-toastify/dist/core/toast';
+import { toast } from 'react-toastify';
 
 interface ApproveSubmissionButtonProps {
   playerName: string;
