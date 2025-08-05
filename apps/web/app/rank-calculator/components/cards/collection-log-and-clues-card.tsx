@@ -7,13 +7,11 @@ import { useCollectionLogAndCluesPointCalculator } from '../../hooks/point-calcu
 import { formatNumber } from '../../utils/format-number';
 import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
 import { ClueScrollTier } from '@/app/schemas/osrs';
-import { clogDiaryTierNameByBonusPoints } from '@/config/custom-diaries';
 
 export function CollectionLogAndCluesCard() {
   const {
     collectionLogSlotPoints,
     clueScrollTierPoints,
-    collectionLogBonusPoints,
   } = useCollectionLogAndCluesPointCalculator();
   const {
     getValues,
@@ -94,32 +92,6 @@ export function CollectionLogAndCluesCard() {
           }
         />
       ))}
-      <DataCard.Row
-
-        left={
-          <Text color="gray" size="2">
-            Clog Diary Tier
-          </Text>
-        }
-        center={
-          <Text
-            aria-label="Clog diary tier"
-            size="2"
-          >
-          {clogDiaryTierNameByBonusPoints[collectionLogBonusPoints] ?? 'None'}
-          </Text>
-        }
-
-        right={
-          <Text
-            aria-label="Clog diary tier points"
-            color="gray"
-            size="2"
-          >
-            {collectionLogBonusPoints ? `+${formatNumber(collectionLogBonusPoints)}` : '-'}
-          </Text>
-        }
-      />
     </DataCard.Root>
   );
 }
