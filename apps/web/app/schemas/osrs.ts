@@ -1781,7 +1781,7 @@ export const CollectionLogItemName = z.enum([
   'Oathplate chest',
   'Oathplate legs',
   'Soulflame horn',
-  'Vile of rite transference',
+  'Rite of vile transference',
   'Forgotten lockbox',
   'Dossier',
   'Barrel of demonic tallow (full)',
