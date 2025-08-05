@@ -13,7 +13,6 @@ import {
 import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
 import { CollectionLogItemName, CombatAchievementTier } from '@/app/schemas/osrs';
 import { useWatch } from 'react-hook-form';
-import { nex } from '@/data/item-categories/nex';
 
 export interface RankData {
   rank: Rank | null;
