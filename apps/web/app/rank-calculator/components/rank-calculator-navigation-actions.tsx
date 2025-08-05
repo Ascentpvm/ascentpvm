@@ -94,7 +94,10 @@ export function RankCalculatorNavigationActions({
 
                   return;
                 }
-
+                if (!rank){
+                  toast.error('You are not eligible for a rank!');
+                  return;
+                }
                 void handleToastUpdates(
                   publishRankSubmission({
                     totalPoints,

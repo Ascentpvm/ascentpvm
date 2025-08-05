@@ -25,7 +25,6 @@ import { getRankImageUrl } from '../../utils/get-rank-image-url';
 import { useCurrentPlayer } from '../../contexts/current-player-context';
 import { handleToastUpdates } from '../../utils/handle-toast-updates';
 import { publishRankSubmissionAction } from '../../[player]/actions/publish-rank-submission-action';
-import { Rank } from '@/config/enums';
 
 export function RankProgressCard() {
   const {
@@ -198,7 +197,7 @@ export function RankProgressCard() {
                 void handleToastUpdates(
                   publishRankSubmission({
                     totalPoints: pointsAwarded,
-                    rank: rank as Rank,
+                    rank: rank!,
                   }),
                   { success: 'Rank application submitted!' },
                 );
