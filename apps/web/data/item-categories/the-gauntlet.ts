@@ -6,11 +6,6 @@ export const theGauntlet: ItemCategory = {
   image: formatWikiImageUrl('Corrupted Youngllef chathead', 'category'),
   items: [
     singleItem({
-      name: 'Crystal weapon seed',
-      collectionLogCategory: 'the_gauntlet',
-      targetDropSources: ['Reward Chest (The Gauntlet)#(Corrupted)'],
-    }),
-    singleItem({
       name: 'Crystal armour seed',
       collectionLogCategory: 'the_gauntlet',
       targetDropSources: ['Reward Chest (The Gauntlet)#(Corrupted)'],
