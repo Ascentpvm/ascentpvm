@@ -6,30 +6,6 @@ export const desertTreasure2: ItemCategory = {
   image: formatWikiImageUrl('Ancient icon detail', 'category'),
   items: [
     singleItem({
-      name: "Awakener's orb",
-      collectionLogCategory: 'vardorvis',
-    }),
-    singleItem({
-      name: 'Blood quartz',
-      collectionLogCategory: 'vardorvis',
-    }),
-    singleItem({
-      name: 'Ice quartz',
-      collectionLogCategory: 'duke_sucellus',
-    }),
-    singleItem({
-      name: 'Shadow quartz',
-      collectionLogCategory: 'the_whisperer',
-    }),
-    singleItem({
-      name: 'Smoke quartz',
-      collectionLogCategory: 'the_leviathan',
-    }),
-    singleItem({
-      name: 'Chromium ingot',
-      collectionLogCategory: 'vardorvis',
-    }),
-    singleItem({
       name: 'Virtus mask',
       collectionLogCategory: 'vardorvis',
     }),
