@@ -83,6 +83,10 @@ export const TempleOSRSPlayerStats = z.object({
     Clue_hard: z.number().nonnegative(),
     Clue_elite: z.number().nonnegative(),
     Clue_master: z.number().nonnegative(),
+    'Slayer_level': z.number().nonnegative(),
+    'Chambers of Xeric Challenge Mode': z.number().nonnegative(),
+    'Theatre of Blood': z.number().nonnegative(),
+    'Tombs of Amascut Expert': z.number().nonnegative(),
   }),
 });
 
@@ -105,6 +109,7 @@ export const TempleOSRSPlayerCollectionLog = z.object({
   data: z.object({
     total_collections_available: z.number().nonnegative(),
     total_collections_finished: z.number().nonnegative(),
+    ehc: z.number().nonnegative(),
     items: z.array(TempleOSRSCollectionLogItem),
   }),
 });

@@ -18,6 +18,7 @@ export function CollectionLogAndCluesCard() {
     formState: { defaultValues },
   } = useFormContext<RankCalculatorSchema>();
   const collectionLogTotal = getValues('collectionLogTotal');
+  const ehc = getValues('ehc')
 
   return (
     <DataCard.Root>
@@ -59,6 +60,23 @@ export function CollectionLogAndCluesCard() {
         right={
           <Text aria-label="Collection log slot points" color="gray" size="2">
             {formatNumber(collectionLogSlotPoints)}
+          </Text>
+        }
+      />
+      <DataCard.Row
+        left={
+          <Text color="gray" size="2">
+            EHC
+          </Text>
+        }
+        center={
+          <Text size="2" style={{ color: 'white' }}>
+            {formatNumber(ehc)}
+          </Text>
+        }
+        right={
+          <Text aria-label="EHC points" color="gray" size="2">
+            {formatNumber(0)}
           </Text>
         }
       />

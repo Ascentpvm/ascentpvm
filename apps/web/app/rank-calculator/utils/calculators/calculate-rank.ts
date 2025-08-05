@@ -1,18 +1,21 @@
 import { Rank } from '@/config/enums';
 import { RankStructure } from '@/app/schemas/rank-calculator';
 import {
+  rankRequiredBossKills,
   rankRequiredCombatAchievements,
   rankRequiredItems,
+  rankRequiredSlayerLevel,
   rankThresholds,
+  rankEhcThresholds,
 } from '@/config/ranks';
 import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
 import { CollectionLogItemName, CombatAchievementTier } from '@/app/schemas/osrs';
 import { useWatch } from 'react-hook-form';
 
 export interface RankData {
-  rank: Rank;
+  rank: Rank | null;
   nextRank: Rank | null;
-  throttleReason: 'items' | 'Master CAs' | null;
+  throttleReason: 'slayer level' | 'boss kc' | 'items' | 'Master CAs' | null;
 }
 
 export function calculateRank(
@@ -36,10 +39,33 @@ export function calculateRank(
   const quiver = useWatch<RankCalculatorSchema, 'hasDizanasQuiver'>({
     name: 'hasDizanasQuiver'
   });
+  const toaExpertKillCount = useWatch<RankCalculatorSchema, 'toaExpertKillCount'>({
+    name: 'toaExpertKillCount',
+  });
+  const chambersOfXericCmKillCount = useWatch<RankCalculatorSchema, 'chambersOfXericCmKillCount'>({
+    name: 'chambersOfXericCmKillCount',
+  });
+  const tobKillCount = useWatch<RankCalculatorSchema, 'tobKillCount'>({
+    name: 'tobKillCount',
+  });
 
-  let currentRank: Rank = rankData[0][0];
+  const slayerLevel = useWatch<RankCalculatorSchema, 'slayerLevel'>({
+    name: 'slayerLevel',
+  });
+
+  const ehc = useWatch<RankCalculatorSchema, 'ehc'>({
+    name: 'ehc',
+  });
+
+  const playerBossKillCounts = {
+    chambersOfXericCmKillCount,
+    toaExpertKillCount,
+    tobKillCount,
+  };
+
+  let currentRank: Rank | null = null;
   let nextRank: Rank | null = null;
-  let throttleReason: 'items' | 'Master CAs' | null = null;
+  let throttleReason: 'slayer level' | 'boss kc' | 'items' | 'Master CAs' | null = null;
 
   const effectivePoints =
     rankStructure === 'Clog' ? collectionLogSlots : pointsAwarded;
@@ -50,6 +76,14 @@ export function calculateRank(
 
   for (let i = 0; i < rankData.length; i++) {
     const [rank, threshold] = rankData[i];
+
+    const rankEhcThreshold = rankEhcThresholds[rankStructure][rank] ?? 0;
+
+    if (rankStructure === "Clog") {
+      if (effectivePoints < threshold && ehc < rankEhcThreshold) {
+        break;
+      }
+    }
 
     if (effectivePoints < threshold) {
       break;
@@ -75,7 +109,12 @@ export function calculateRank(
         return isRequirementMet;
       }) ?? true;
 
-    console.log(missingItems)
+    const hasRequiredBossKillCount = rankRequiredBossKills[rank]
+      ? Object.entries(rankRequiredBossKills[rank]).every(([key, value]) => {
+        const playerKillCount = playerBossKillCounts[key as keyof typeof rankRequiredBossKills[Rank]];
+        return playerKillCount >= value;
+      })
+      : true;
 
     const hasRequiredCombatAchievements =
       (rankRequiredCombatAchievements[rank] &&
@@ -84,13 +123,31 @@ export function calculateRank(
         ) <= achievedCombatAchievementTierIndex) ??
       true;
 
+    const hasRequiredSlayerLevel = rankRequiredSlayerLevel[rank]
+      ? slayerLevel >= rankRequiredSlayerLevel[rank]
+      : true;
+
     if (!hasRequiredItems) {
       throttleReason = 'items';
+      nextRank = rank;
       break;
     }
 
     if (!hasRequiredCombatAchievements) {
       throttleReason = 'Master CAs';
+      nextRank = rank;
+      break;
+    }
+
+    if (!hasRequiredBossKillCount) {
+      throttleReason = 'boss kc';
+      nextRank = rank;
+      break;
+    }
+
+    if (!hasRequiredSlayerLevel) {
+      throttleReason = 'slayer level';
+      nextRank = rank;
       break;
     }
 
