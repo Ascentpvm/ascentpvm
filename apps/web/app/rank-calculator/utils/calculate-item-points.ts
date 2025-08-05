@@ -72,26 +72,30 @@ export function calculateItemPoints(
   dropRateInfo: DroppedItemResponse,
   items: NonEmptyArray<RequiredItem>,
 ): number {
-  const override = itemPointOverrides[items[0].clogName] ?? false;
 
-  if (override) {
-    console.log(
-      `Using override for ${items[0].clogName}: ${override}`,
-    );
-    return override
-  }
   const rawPoints = items.reduce(
     (
       acc,
       {
         amount,
         clogName,
-        targetDropSources = Object.keys(dropRateInfo[clogName]),
+        targetDropSources = dropRateInfo[clogName] ? Object.keys(dropRateInfo[clogName]) : [],
         ignoreDropRateModifier,
         ignoreAmountMultiplier,
         ignorePoints,
       },
     ) => {
+      // Check for override FIRST, before processing drop sources
+      const override = itemPointOverrides[clogName];
+      if (override !== undefined) {
+        return acc + override;
+      }
+
+      // If there are no drop sources, return 0 points
+      if (!targetDropSources || targetDropSources.length === 0) {
+        return acc;
+      }
+
       const totalPointsForDropSources = targetDropSources.reduce(
         (sum, dropSource) => {
           if (ignorePoints) {

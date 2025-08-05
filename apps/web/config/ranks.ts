@@ -76,7 +76,7 @@ export const rankThresholds: Record<
     Captain: 4100,
     Astral: 5300,
     Soul: 6800,
-    Completionist: 9000,
+    Completionist: 6800,
   },
   'Deputy Owner': {
     'Deputy Owner': 0,
