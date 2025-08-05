@@ -5,6 +5,7 @@ import { useNotableItemsPointCalculator } from './notable-items/use-notable-item
 import { useSkillingPointCalculator } from './skilling/use-skilling-point-calculator';
 import { useCombatPointCalculator } from './combat/use-combat-point-calculator';
 import { useRank } from '../use-rank';
+import { useCompletionistStatus } from '../use-completionist-status';
 import { RankCalculatorSchema } from '../../[player]/submit-rank-calculator-validation';
 import { RankData } from '../../utils/calculators/calculate-rank';
 import { calculateTotalPoints } from '../../utils/calculators/calculate-total-points';
@@ -13,6 +14,9 @@ import { rankThresholds } from '@/config/ranks';
 export type RankCalculatorData = CommonPointCalculatorData & RankData;
 
 export function useRankCalculator() {
+  // Update completionist status when items change
+  useCompletionistStatus();
+
   const rankStructure = useWatch<RankCalculatorSchema, 'rankStructure'>({
     name: 'rankStructure',
   });
@@ -41,7 +45,6 @@ export function useRankCalculator() {
   } else if (rankStructure === 'Clog') {
     pointsAwarded = collectionLogCount;
   }
-
 
   const { rank, nextRank, throttleReason } = useRank(pointsAwarded);
 
