@@ -71,7 +71,7 @@ export const ehbRates = {
   "Vet'ion": 39,
   Vorkath: 34,
   Wintertodt: 12,
-  Yama: 20,
+  Yama: 25,
   Zalcano: 40,
   Zulrah: 170,
 
