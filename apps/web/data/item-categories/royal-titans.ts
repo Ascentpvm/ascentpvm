@@ -15,6 +15,10 @@ export const royalTitans: ItemCategory = {
       image: formatWikiImageUrl('Mystic Vigour'),
       collectionLogCategory: 'royal_titans',
     }),
+    singleItem({
+      name: 'Giantsoul amulet (uncharged)',
+      collectionLogCategory: 'royal_titans',
+    }),
     compoundItem({
       name: 'Twinflame staff',
       requiredItems: [
