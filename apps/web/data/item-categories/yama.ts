@@ -18,7 +18,7 @@ export const yama: ItemCategory = {
     singleItem({
       name: 'Rite of vile transference',
       collectionLogCategory: 'yama',
-      targetDropSources: ['Yama'],
+      targetDropSources: ['Dossier'],
     }),
     singleItem({
       name: 'Oathplate chest',
