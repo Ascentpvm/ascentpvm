@@ -26,6 +26,7 @@ export const RankCalculatorSchema = z.object({
   ehb: z.coerce.number().nonnegative(),
   ehp: z.coerce.number().nonnegative(),
   ehc: z.coerce.number().nonnegative(),
+  isCompletionist: z.boolean().default(false),
   totalLevel: z.coerce.number().min(minimumTotalLevel).max(maximumTotalLevel),
   playerName: PlayerName,
   rankStructure: RankStructure,
