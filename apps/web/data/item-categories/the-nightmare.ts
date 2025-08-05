@@ -46,6 +46,12 @@ export const theNightmare: ItemCategory = {
       targetDropSources: ["Phosani's Nightmare"],
     }),
     singleItem({
+      name: 'Slepey tablet',
+      clogName: 'Slepey tablet',
+      collectionLogCategory: 'the_nightmare',
+      targetDropSources: ["Phosani's Nightmare"],
+    }),
+    singleItem({
       name: 'Jar of dreams (Nightmare)',
       clogName: 'Jar of dreams',
       collectionLogCategory: 'the_nightmare',
