@@ -8,7 +8,7 @@ export function getPointsRemainingLabel(
     return 'Completionist required!';
   }
   if (throttleReason === 'join date') {
-    return 'Need more time in the clan!';
+    return 'Join date too recent!';
   }
   if (throttleReason === 'items') {
     return 'Items required!';
