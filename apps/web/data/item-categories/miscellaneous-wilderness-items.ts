@@ -12,14 +12,6 @@ export const miscellaneousWildernessItems: ItemCategory = {
   image:
     'https://oldschool.runescape.wiki/images/Pkskull_%28Steam_Emoticon%29.png',
   items: [
-    questItem({
-      name: 'Mage Arena 2 cape',
-      points: calculateXpOrTimeBasedItemPoints(
-        estimatedHoursToAcquireMageArena2Cape,
-      ),
-      image: formatWikiImageUrl('Imbued zamorak cape'),
-      requiredQuests: ['Mage Arena II'],
-    }),
     compoundItem({
       name: 'Odium ward',
       requiredItems: [
@@ -50,19 +42,6 @@ export const miscellaneousWildernessItems: ItemCategory = {
       name: 'Dragon pickaxe',
       collectionLogCategory: 'venenatis_and_spindel',
       targetDropSources: ['Artio', 'Spindel', "Calvar'ion"],
-    }),
-    singleItem({
-      name: 'Amulet of eternal glory',
-      collectionLogCategory: 'miscellaneous',
-      points: calculateXpOrTimeBasedItemPoints(
-        1 / eternalGloryDropRate,
-        gloriesChargedPerHour,
-      ),
-    }),
-    singleItem({
-      name: 'Teleport anchoring scroll',
-      collectionLogCategory: 'slayer',
-      targetDropSources: ["Zombie Pirate's Locker"],
     }),
   ],
 };
