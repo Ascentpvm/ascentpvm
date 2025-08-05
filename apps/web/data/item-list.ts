@@ -1,7 +1,7 @@
 import { ItemCategoryMap } from '@/app/schemas/items';
 import { abyssalSire } from './item-categories/abyssal-sire';
 import { alchemicalHydra } from './item-categories/alchemical-hydra';
-import { amoxliatl } from './item-categories/Amoxliatl';
+import { amoxliatl } from './item-categories/amoxliatl';
 import { araxxor } from './item-categories/araxxor';
 import { barbarianAssault } from './item-categories/barbarian-assault';
 import { callistoAndArtio } from './item-categories/callisto-and-artio';
