@@ -259,7 +259,7 @@ export const publishRankSubmissionAction = authActionClient
       } satisfies RankSubmissionDiff;
 
       const isAutoApprovalAvailable =
-        rankStructure === 'Standard' &&
+        (rankStructure === 'Standard' || rankStructure === 'Clog') &&
         hasTempleCollectionLog &&
         hasWikiSyncData &&
         hasTemplePlayerStats &&

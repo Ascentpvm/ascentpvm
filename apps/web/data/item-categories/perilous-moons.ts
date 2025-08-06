@@ -1,57 +1,43 @@
 import { formatWikiImageUrl } from '@/app/rank-calculator/utils/format-wiki-url';
 import { ItemCategory } from '@/app/schemas/items';
-import { singleItem } from '../utils/item-builders';
+import { compoundItem } from '../utils/item-builders';
 
 export const perilousMoons: ItemCategory = {
   image: formatWikiImageUrl('Blood Moon', 'category'),
   items: [
-    singleItem({
-      name: 'Eclipse atlatl',
-      collectionLogCategory: 'moons_of_peril',
+    compoundItem({
+      name: 'Eclipse moon armour',
+      image: formatWikiImageUrl('Eclipse atlatl', 'category'),
+      requiredItems: [
+        { clogName: 'Eclipse moon helm' },
+        { clogName: 'Eclipse moon chestplate' },
+        { clogName: 'Eclipse moon tassets' },
+        { clogName: 'Eclipse atlatl' },
+      ],
+      collectionLogCategories: ['moons_of_peril'],
     }),
-    singleItem({
-      name: 'Eclipse moon helm',
-      collectionLogCategory: 'moons_of_peril',
+
+    compoundItem({
+      name: 'Blood moon armour',
+      image: formatWikiImageUrl('Dual macuahuitl', 'category'),
+      requiredItems: [
+        { clogName: 'Blood moon helm' },
+        { clogName: 'Blood moon chestplate' },
+        { clogName: 'Blood moon tassets' },
+        { clogName: 'Dual macuahuitl' }
+      ],
+      collectionLogCategories: ['moons_of_peril'],
     }),
-    singleItem({
-      name: 'Eclipse moon chestplate',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Eclipse moon tassets',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Dual macuahuitl',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Blood moon helm',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Blood moon chestplate',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Blood moon tassets',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Blue moon spear',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Blue moon helm',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Blue moon chestplate',
-      collectionLogCategory: 'moons_of_peril',
-    }),
-    singleItem({
-      name: 'Blue moon tassets',
-      collectionLogCategory: 'moons_of_peril',
+    compoundItem({
+      name: 'Blue moon armour',
+      image: formatWikiImageUrl('Blue moon spear', 'category'),
+      requiredItems: [
+        { clogName: 'Blue moon helm' },
+        { clogName: 'Blue moon chestplate' },
+        { clogName: 'Blue moon tassets' },
+        { clogName: 'Blue moon spear' }
+      ],
+      collectionLogCategories: ['moons_of_peril'],
     }),
   ],
 };

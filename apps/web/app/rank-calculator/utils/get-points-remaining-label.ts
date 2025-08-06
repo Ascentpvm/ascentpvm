@@ -13,7 +13,6 @@ export function getPointsRemainingLabel(
   if (throttleReason === 'items') {
     return 'Missing Required Items!';
   }
-
   if (throttleReason === 'Master CAs') {
     return 'Master CAs required!';
   }

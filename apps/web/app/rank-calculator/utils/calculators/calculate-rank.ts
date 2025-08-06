@@ -99,7 +99,6 @@ export function calculateRank(
 
     if (effectivePoints < threshold) {
       nextRank = rank;
-      throttleReason = 'items';
       break;
     }
 

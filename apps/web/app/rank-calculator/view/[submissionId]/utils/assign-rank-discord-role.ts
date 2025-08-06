@@ -5,7 +5,9 @@ import { discordBotClient } from '@/discord';
 import { APIGuildMember, Routes } from 'discord-api-types/v10';
 
 export async function assignRankDiscordRole(rank: Rank, submitterId: string) {
+
   const { guildId } = serverConstants.discord;
+
   const { roles } = (await discordBotClient.get(
     Routes.guildMember(guildId, submitterId),
   )) as APIGuildMember;
@@ -27,11 +29,12 @@ export async function assignRankDiscordRole(rank: Rank, submitterId: string) {
   ]);
 
   const approvedRole = rankDiscordRoles[rank as keyof typeof rankDiscordRoles];
-
   // Apply the approved role if the user doesn't already have it
   if (!roles.includes(approvedRole)) {
     await discordBotClient.put(
       Routes.guildMemberRole(guildId, submitterId, approvedRole),
     );
+  } else {
+    console.log('🔍 User already has role:', approvedRole);
   }
 }

@@ -52,6 +52,7 @@ import { visages } from './item-categories/visages';
 import { vorkath } from './item-categories/vorkath';
 import { yama } from './item-categories/yama';
 import { zulrah } from './item-categories/zulrah';
+import { barrows } from './item-categories/barrows';
 
 export const itemList: ItemCategoryMap = {
   'Abyssal Sire': abyssalSire,
@@ -59,6 +60,7 @@ export const itemList: ItemCategoryMap = {
   Amoxliatl: amoxliatl,
   Araxxor: araxxor,
   'Barbarian Assault': barbarianAssault,
+  'Barrows': barrows,
   'Callisto and Artio': callistoAndArtio,
   Cerberus: cerberus,
   'Chambers of Xeric': chambersOfXeric,
