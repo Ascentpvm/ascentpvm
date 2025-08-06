@@ -10,6 +10,7 @@ import { CollectionLogItemName } from '@/app/schemas/osrs';
 export const ehbRates = {
   'Abyssal Sire': 44,
   'Alchemical Hydra': 29,
+  'Chest (Barrows)': 22,
   Amoxliatl: 71,
   Araxxor: 40,
   Artio: 50,

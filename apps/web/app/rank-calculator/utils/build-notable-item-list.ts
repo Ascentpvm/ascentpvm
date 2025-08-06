@@ -17,7 +17,7 @@ const itemListChecksum = JSum.digest(itemList, 'SHA256', 'hex');
 const efficiencyDataChecksum = JSum.digest(efficiencyData, 'SHA256', 'hex');
 const itemPointMapChecksum = JSum.digest(itemPointMap, 'SHA256', 'hex');
 
-export const buildNotableItemList = unstable_cache(
+export const buildNotableItemList = //unstable_cache(
   // eslint-disable-next-line @typescript-eslint/require-await
   async (dropRates: DroppedItemResponse) =>
     Object.entries(itemList).reduce<ItemCategoryMap>((acc, [key, category]) => {
@@ -50,11 +50,11 @@ export const buildNotableItemList = unstable_cache(
         ...acc,
         [key]: { ...category, items: items as NonEmptyArray<Item> },
       };
-    }, {}),
+    }, {})/** ,
   [
     `points-per-hour:${pointsConfig.notableItemsPointsPerHour}`,
     `item-list:${itemListChecksum}`,
     `efficiency-data:${efficiencyDataChecksum}`,
     `item-point-map:${itemPointMapChecksum}`,
   ],
-);
+);*/
