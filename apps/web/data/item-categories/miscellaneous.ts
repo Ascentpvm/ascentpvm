@@ -6,12 +6,23 @@ import { calculateXpOrTimeBasedItemPoints } from '@/app/rank-calculator/utils/ca
 import { formatWikiImageUrl } from '@/app/rank-calculator/utils/format-wiki-url';
 import { ItemCategory } from '@/app/schemas/items';
 import {
+  compoundItem,
   singleItem,
 } from '../utils/item-builders';
 
 export const miscellaneous: ItemCategory = {
   image: formatWikiImageUrl('Inventory', 'category'),
   items: [
+    compoundItem({
+      name: 'Godsword blade',
+      requiredItems: [
+        { clogName: 'Godsword shard 1' },
+        { clogName: 'Godsword shard 2' },
+        { clogName: 'Godsword shard 3' },
+      ],
+      collectionLogCategories: ['general_graardor'],
+      points: 15
+    }),
     singleItem({
       name: 'Dragon warhammer',
       collectionLogCategory: 'miscellaneous',

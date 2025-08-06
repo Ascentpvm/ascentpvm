@@ -6,10 +6,12 @@ export const kraken: ItemCategory = {
     singleItem({
       name: 'Trident of the seas (full)',
       collectionLogCategory: 'kraken',
+      points: 6,
     }),
     singleItem({
       name: 'Kraken tentacle',
       collectionLogCategory: 'kraken',
+      points: 4,
     }),
     singleItem({
       name: 'Jar of dirt',
