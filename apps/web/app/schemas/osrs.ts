@@ -291,6 +291,10 @@ export const maximumTotalLevel = skillsCount * maximumSkillLevel;
  * https://oldschool.runescape.wiki/?title=Module:Collection_log/data.json&action=raw&ctype=application%2Fjson
  */
 export const CollectionLogItemName = z.enum([
+  'Avernic treads',
+  'Eye of ayak (uncharged)',
+  'Mokhaiotl cloth',
+  'Dom',
   'Dragon spear',
   'Shield left half',
   'Ranger boots',

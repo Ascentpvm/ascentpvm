@@ -161,6 +161,7 @@ export const TempleOSRSCollectionLogCategory = z.enum([
   'obor',
   'phantom_muspah',
   'royal_titans',
+  'doom_of_mokhaiotl',
   'sarachnis',
   'scorpia',
   'scurrius',

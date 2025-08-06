@@ -11,6 +11,7 @@ export const ehbRates = {
   'Abyssal Sire': 44,
   'Alchemical Hydra': 29,
   'Chest (Barrows)': 22,
+  'Doom of Mokhaiotl': 6, // TODO: Change EHB for doom when published
   Amoxliatl: 71,
   Araxxor: 40,
   Artio: 50,

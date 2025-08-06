@@ -53,6 +53,7 @@ import { vorkath } from './item-categories/vorkath';
 import { yama } from './item-categories/yama';
 import { zulrah } from './item-categories/zulrah';
 import { barrows } from './item-categories/barrows';
+import { doom } from './item-categories/doom';
 
 export const itemList: ItemCategoryMap = {
   'Abyssal Sire': abyssalSire,
@@ -80,6 +81,7 @@ export const itemList: ItemCategoryMap = {
   'Kalphite Queen': kalphiteQueen,
   'King Black Dragon': kingBlackDragon,
   Kraken: kraken,
+  'Doom of Mokhaiotl': doom,
   "Kree'arra": krearra,
   "K'ril Tsutsaroth": krilTsutsaroth,
   'Major Slayer Items': majorSlayerItems,
