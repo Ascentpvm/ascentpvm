@@ -1,6 +1,6 @@
 import { formatWikiImageUrl } from '@/app/rank-calculator/utils/format-wiki-url';
 import { ItemCategory } from '@/app/schemas/items';
-import { singleItem, compoundItem } from '../utils/item-builders';
+import { compoundItem } from '../utils/item-builders';
 
 export const perilousMoons: ItemCategory = {
   image: formatWikiImageUrl('Blood Moon', 'category'),
