@@ -71,11 +71,11 @@ export const rankThresholds: Record<
   Standard: {
     Sapphire: 0,
     Emerald: 1500,
-    'Red Topaz': 2250,
+    'Red Topaz': 2225,
     Zenyte: 3000,
     Captain: 4100,
-    Astral: 5300,
-    Soul: 6800,
+    Astral: 5200,
+    Soul: 6300,
     Completionist: 6800,
   },
   'Deputy Owner': {
