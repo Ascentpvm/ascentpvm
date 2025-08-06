@@ -16,7 +16,7 @@ export const royalTitans: ItemCategory = {
       collectionLogCategory: 'royal_titans',
     }),
     singleItem({
-      name: 'Giantsoul amulet (uncharged)',
+      name: 'Giantsoul amulet',
       collectionLogCategory: 'royal_titans',
       points: 1,
     }),

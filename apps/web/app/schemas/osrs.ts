@@ -1774,7 +1774,7 @@ export const CollectionLogItemName = z.enum([
   'Mystic vigour prayer scroll',
   'Ice element staff crown',
   'Fire element staff crown',
-  'Giantsoul amulet (uncharged)',
+  'Giantsoul amulet',
   'Desiccated page',
   'Yami',
   'Chasm teleport scroll',
