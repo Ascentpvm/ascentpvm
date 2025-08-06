@@ -1198,6 +1198,7 @@ export const CollectionLogItemName = z.enum([
   'Cabbage round shield',
   'Gnomish firelighter',
   'Earthbound tecpatl',
+  'Sulphur blades',
   'Evil chicken feet',
   'Evil chicken wings',
   'Evil chicken head',

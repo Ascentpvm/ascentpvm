@@ -24,7 +24,13 @@ export const miscellaneous: ItemCategory = {
       name: 'Earthbound tecpatl',
       collectionLogCategory: 'slayer',
       targetDropSources: ['Earthen Nagua']
-    }),     
+    }),
+    singleItem({
+      name: 'Sulphur blades',
+      collectionLogCategory: 'miscellaneous',
+      targetDropSources: ['Sulphur Nagua'],
+      points: 2,
+    }),
     singleItem({
       name: 'Swift blade',
       points: calculateXpOrTimeBasedItemPoints(
