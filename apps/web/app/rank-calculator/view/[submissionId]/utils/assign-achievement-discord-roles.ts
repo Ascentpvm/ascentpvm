@@ -14,9 +14,16 @@ export async function assignAchievementDiscordRoles(
 
   return Promise.all(
     Object.entries(achievementRoles).map(async ([roleName, shouldApply]) => {
+      if (Object.keys(achievementDiscordRoles).length === 0) {
+        console.warn(
+          `No achievement roles configured. Skipping assignment for ${roleName}.`,
+        );
+        return false;
+      }
+
       const role =
         achievementDiscordRoles[
-          roleName as keyof typeof achievementDiscordRoles
+        roleName as keyof typeof achievementDiscordRoles
         ];
 
       if (!shouldApply || roles.includes(role)) {

@@ -31,15 +31,15 @@ type ApproveSubmissionInput = {
   submissionId: string;
   rank: Rank;
 } & (
-  | {
+    | {
       approverId: string;
       isAutomatic?: false;
     }
-  | {
+    | {
       approverId?: never;
       isAutomatic: true;
     }
-);
+  );
 
 export async function approveSubmission({
   submissionId,
@@ -142,9 +142,9 @@ export async function approveSubmission({
 
     const newAchievementRoles = requiresAchievementRoles
       ? await assignAchievementDiscordRoles(
-          submitterId,
-          applicableAchievementDiscordRoles,
-        )
+        submitterId,
+        applicableAchievementDiscordRoles,
+      )
       : [];
 
     await sendDiscordMessage(
@@ -152,10 +152,9 @@ export async function approveSubmission({
         content: dedent`
           <@${submitterId}>
 
-          Your application has been ${
-            isAutomatic
-              ? 'automatically approved'
-              : `approved by <@${approverId}>`
+          Your application has been ${isAutomatic
+            ? 'automatically approved'
+            : `approved by <@${approverId}>`
           } and you have been assigned the following role(s) on Discord:
 
           ${[getRankName(rank), ...newAchievementRoles.filter(Boolean)]
