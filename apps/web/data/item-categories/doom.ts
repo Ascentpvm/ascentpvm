@@ -7,7 +7,7 @@ export const doom: ItemCategory = {
     image: formatWikiImageUrl('Doom_of_Mokhaiotl', 'category'),
     items: [
         singleItem({
-            name: 'Avernic treads',
+            name: 'Avernic tread',
             collectionLogCategory: 'doom_of_mokhaiotl'
         }),
         singleItem({
