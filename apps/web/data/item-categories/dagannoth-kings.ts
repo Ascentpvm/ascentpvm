@@ -6,7 +6,7 @@ export const dagannothKings: ItemCategory = {
   image: formatWikiImageUrl('Dagannoth Prime', 'category'),
   items: [
     singleItem({
-      name: 'Archers ring',
+      name: 'Archers rings',
       collectionLogCategory: 'dagannoth_kings',
     }),
     singleItem({
