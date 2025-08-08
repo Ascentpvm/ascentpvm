@@ -92,7 +92,6 @@ export const itemPointOverrides: Partial<Record<CollectionLogItemName, number>> 
   'Earthbound tecpatl': 2,
   'Beaver': 0,
   'Heron': 0,
-  'Rift guardian': 0,
   'Baby chinchompa': 0,
   'Giant squirrel': 0,
   'Rock golem': 0,
@@ -102,41 +101,8 @@ export const itemPointOverrides: Partial<Record<CollectionLogItemName, number>> 
   'Eye of ayak (uncharged)': 0,
   'Mokhaiotl cloth': 0,
   'Dom': 0,
-};
-
-/**
- * Some content is expected to be completed in a group to be the most efficient,
- * meaning the player will only receive a fraction of the loot.
- */
-export const groupSizes: Partial<Record<keyof typeof ehbRates, number>> = {
-  'Chambers of Xeric Challenge Mode': 3,
-  Nex: 4,
-  Zalcano: 4,
-  Yama: 2,
-};
-
-/**
- * Some items have unique drop mechanics that mean their rarities aren't quite correct in reality.
- *
- * For example, the Hydra's eye, fang and heart are all 1/180, but dupe protection makes the effective drop rate 1/60.
- *
- * This map is used to modify the final item points to account for this.
- */
-export const pointModifiers: Partial<Record<CollectionLogItemName, number>> = {
-  "Hydra's eye": 1 / 3,
-  "Hydra's fang": 1 / 3,
-  "Hydra's heart": 1 / 3,
-  "Lil' creator": 0, // Obtained from Spoils of War which costs 30 Soul Wars Zeal to purchase
-  'Twisted ancestral colour kit':
-    1 / groupSizes['Chambers of Xeric Challenge Mode']!,
-  'Metamorphic dust': 1 / groupSizes['Chambers of Xeric Challenge Mode']!,
-  'Oathplate chest': 0.625, // Oathplate armour can be created by the player using Oathplate shards
-  'Oathplate helm': 0.625, // Oathplate armour can be created by the player using Oathplate shards
-  'Oathplate legs': 0.625, // Oathplate armour can be created by the player using Oathplate shards,
   'Abyssal orphan': 0,
   'Ikkle hydra': 0,
-  Beaver: 0,
-  Heron: 0,
   Tangleroot: 0,
   "Pet snakeling": 0,
   "Pet chaos elemental": 0,
@@ -158,7 +124,6 @@ export const pointModifiers: Partial<Record<CollectionLogItemName, number>> = {
   "Venenatis spiderling": 0,
   "Vet'ion jr.": 0,
   "Scorpia's offspring": 0,
-  "Giant squirrel": 0,
   "Lil' zik": 0,
   "Lil'viathan": 0,
   "Little nightmare": 0,
@@ -173,9 +138,6 @@ export const pointModifiers: Partial<Record<CollectionLogItemName, number>> = {
   "Phoenix": 0,
   "Olmlet": 0,
   "Bloodhound": 0,
-  "Rock golem": 0,
-  "Baby chinchompa": 0,
-  Rocky: 0,
   "Abyssal protector": 0,
   "Rift guardian": 0,
   Herbi: 0,
@@ -210,6 +172,37 @@ export const pointModifiers: Partial<Record<CollectionLogItemName, number>> = {
   "Jar of stone": 0,
   "Jar of swamp": 0,
   "Jar of venom": 0,
+};
+
+/**
+ * Some content is expected to be completed in a group to be the most efficient,
+ * meaning the player will only receive a fraction of the loot.
+ */
+export const groupSizes: Partial<Record<keyof typeof ehbRates, number>> = {
+  'Chambers of Xeric Challenge Mode': 3,
+  Nex: 4,
+  Zalcano: 4,
+  Yama: 2,
+};
+
+/**
+ * Some items have unique drop mechanics that mean their rarities aren't quite correct in reality.
+ *
+ * For example, the Hydra's eye, fang and heart are all 1/180, but dupe protection makes the effective drop rate 1/60.
+ *
+ * This map is used to modify the final item points to account for this.
+ */
+export const pointModifiers: Partial<Record<CollectionLogItemName, number>> = {
+  "Hydra's eye": 1 / 3,
+  "Hydra's fang": 1 / 3,
+  "Hydra's heart": 1 / 3,
+  "Lil' creator": 0, // Obtained from Spoils of War which costs 30 Soul Wars Zeal to purchase
+  'Twisted ancestral colour kit':
+    1 / groupSizes['Chambers of Xeric Challenge Mode']!,
+  'Metamorphic dust': 1 / groupSizes['Chambers of Xeric Challenge Mode']!,
+  'Oathplate chest': 0.625, // Oathplate armour can be created by the player using Oathplate shards
+  'Oathplate helm': 0.625, // Oathplate armour can be created by the player using Oathplate shards
+  'Oathplate legs': 0.625, // Oathplate armour can be created by the player using Oathplate shards,
 };
 
 /**

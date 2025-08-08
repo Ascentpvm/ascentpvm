@@ -52,7 +52,7 @@ export const theNightmare: ItemCategory = {
       targetDropSources: ["Phosani's Nightmare"],
     }),
     singleItem({
-      name: 'Jar of dreams (Nightmare)',
+      name: 'Jar of dreams',
       clogName: 'Jar of dreams',
       collectionLogCategory: 'the_nightmare',
       targetDropSources: ["Phosani's Nightmare"],

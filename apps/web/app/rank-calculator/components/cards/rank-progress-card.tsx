@@ -35,6 +35,14 @@ export function RankProgressCard() {
     rank,
     throttleReason,
   } = useRankCalculator();
+  
+  // Debug logging to see what the hook is returning
+  console.log('=== RANK PROGRESS CARD DEBUG ===');
+  console.log('rank from useRankCalculator:', rank);
+  console.log('nextRank from useRankCalculator:', nextRank);
+  console.log('throttleReason from useRankCalculator:', throttleReason);
+  console.log('getRankName(rank):', getRankName(rank));
+  
   const { register, setValue, getValues } = useFormContext();
   const { playerName, rank: currentRank } = useCurrentPlayer();
   const [showRankUpDialog, setShowRankUpDialog] = useState(
@@ -126,7 +134,10 @@ export function RankProgressCard() {
           <Flex justify="between">
             <Flex gap="2" align="center">
               <Text aria-label="Current rank" color="gray" size="2">
-                {rankName}
+                {(() => {
+                  console.log('RENDERING rankName in UI:', rankName);
+                  return rankName;
+                })()}
               </Text>
               {rank ? (
                 <Image

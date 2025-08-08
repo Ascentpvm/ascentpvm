@@ -34,6 +34,7 @@ import { mergeTzhaarCapes } from './utils/merge-tzhaar-capes';
 import { isAchievementDiaryCapeAchieved } from '../../utils/is-achievement-diary-cape-achieved';
 import { fetchUserDiscordRoles } from '../fetch-user-discord-roles';
 import { calculateCombatDiaryTierBonusPoints } from '../../utils/calculators/calculate-custom-diary-tier-multipliers';
+import { itemPointOverrides } from '../../config/item-point-map';
 
 export interface PlayerDetailsResponse
   extends Omit<RankCalculatorSchema, 'rank' | 'points'> {
@@ -250,7 +251,10 @@ export async function fetchPlayerDetails(
 
     const itemsThatGivePoints = Object.values(itemList)
       .flatMap(({ items }) => items)
-      .filter(({ points }) => points > 0)
+      .filter(({ name }) => {
+        const override = itemPointOverrides[name as keyof typeof itemPointOverrides]
+        return override != null ? override > 0 : true
+      })
       .map(({ name }) => stripEntityName(name));
 
     const previouslyAcquiredItems = savedData
@@ -282,12 +286,16 @@ export async function fetchPlayerDetails(
 
     let isCompletionist = true;
 
-    // Check if the player has items that give points
-    for (const item of itemsThatGivePoints) {
-      if (acquiredItemsMap[item] !== true) {
-        isCompletionist = false;
-      }
-    }
+    itemsThatGivePoints
+      .forEach((name) => {
+        if (
+          itemsThatGivePoints.includes(name) &&
+          !acquiredItems.includes(name)
+        ) {
+          console.log("🔍 Missing item for completionist:", name);
+          isCompletionist = false;
+        }
+      });
 
     const proofLink =
       savedData?.proofLink ??
@@ -324,6 +332,8 @@ export async function fetchPlayerDetails(
 
     const { combatBonusPoints, collectionLogBonusPoints } =
       calculateCombatDiaryTierBonusPoints(discordRoles);
+
+    console.log(`${rsn} is a completionist? ${isCompletionist}`)
 
     return {
       success: true,

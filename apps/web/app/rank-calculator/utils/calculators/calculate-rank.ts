@@ -145,7 +145,16 @@ export function calculateRank(
       ? (new Date().getTime() - new Date(joinDate).getTime()) / (1000 * 60 * 60 * 24) >= rankRequiredTimeInClan[rank]
       : true;
 
+    if (rank === 'Completionist') {
+      console.log('=== COMPLETIONIST RANK CHECK ===')
+      console.log('hasCompletionistReq:', hasCompletionistReq)
+      console.log('ranksThatRequireAscentCompletionist.includes(rank):', ranksThatRequireAscentCompletionist.includes(rank))
+      console.log('isCompletionist:', isCompletionist)
+      console.log('About to check if (!hasCompletionistReq):', !hasCompletionistReq)
+    }
+
     if (!hasCompletionistReq) {
+      console.log(`❌ Failed completionist requirement for rank: ${rank}`)
       throttleReason = 'completionist';
       nextRank = rank;
       break;
@@ -183,7 +192,13 @@ export function calculateRank(
 
     currentRank = rank;
     nextRank = rankData[i + 1]?.[0] ?? null;
+    console.log(`✅ Successfully achieved rank: ${rank}`)
   }
+
+  console.log('=== FINAL RANK CALCULATION RESULT ===')
+  console.log('currentRank:', currentRank)
+  console.log('nextRank:', nextRank)
+  console.log('throttleReason:', throttleReason)
 
   return { rank: currentRank, nextRank, throttleReason };
 }
