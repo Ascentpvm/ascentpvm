@@ -172,6 +172,7 @@ export const itemPointOverrides: Partial<Record<CollectionLogItemName, number>> 
   "Jar of stone": 0,
   "Jar of swamp": 0,
   "Jar of venom": 0,
+  "Tome of earth (empty)": 0,
 };
 
 /**
