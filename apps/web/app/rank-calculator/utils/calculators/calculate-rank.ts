@@ -92,7 +92,6 @@ export function calculateRank(
     if (rankStructure === "Clog") {
       if (effectivePoints < threshold && ehc < rankEhcThreshold) {
         nextRank = rank;
-        throttleReason = 'items';
         break;
       }
     }
