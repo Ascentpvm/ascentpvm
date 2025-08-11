@@ -14,7 +14,7 @@ export const theHueycoatl: ItemCategory = {
     singleItem({
       name: 'Tome of earth (empty)',
       collectionLogCategory: 'hueycoatl',
-    })
+    }),
     singleItem({
       name: 'Huberte',
       collectionLogCategory: 'hueycoatl',
