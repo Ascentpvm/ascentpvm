@@ -1,6 +1,5 @@
 "use client";
 import { ReactNode, useState, useCallback, useEffect } from "react";
-import { useWatch } from "react-hook-form";
 import { Box, Flex, IconButton, Text, Switch } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
@@ -47,7 +46,7 @@ export function Navigation({ actions, shouldRenderBackButton }: NavigationProps)
     // Hide acquired rows in center
     centerRows().forEach((row) => {
       const cb = row.querySelector<HTMLInputElement>('input[type="checkbox"]');
-      (row as HTMLElement).style.display = cb && cb.checked ? "none" : "";
+      row.style.display = cb?.checked ? "none" : "";
     });
     // Hide 100% center cards or cards with no visible rows left
     centerCards().forEach((card) => {
@@ -62,7 +61,9 @@ export function Navigation({ actions, shouldRenderBackButton }: NavigationProps)
   useEffect(() => {
     try {
       if (localStorage.getItem("missingOnly") === "1") setMissingOnly(true);
-    } catch {}
+    } catch {
+      console.log("Failed to read missingOnly from localStorage");
+    }
   }, []);
 
   // Apply/reset when toggle changes
@@ -75,7 +76,9 @@ export function Navigation({ actions, shouldRenderBackButton }: NavigationProps)
   useEffect(() => {
     try {
       localStorage.setItem("missingOnly", missingOnly ? "1" : "0");
-    } catch {}
+    } catch {
+      console.log("Failed to write missingOnly to localStorage");
+    }
   }, [missingOnly]);
 
   // Re-apply after SPA DOM updates while enabled
