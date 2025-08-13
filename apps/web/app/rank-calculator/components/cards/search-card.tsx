@@ -17,15 +17,17 @@ export function SearchCard({
         left={<Text weight="medium">Search</Text>}
         right={<Text>Explore your clog</Text>}
       />
-      <Flex mt="2">
-        <Input
+      <DataCard.Row
+        right={<Text>Show Missing Clogs</Text>}
+
+        left={<Input
         value={query}
         onChange={(e) => onChange(e.target.value)}
         placeholder="Search your clog..."
         size="1"
         hasError={false}
-        />
-      </Flex>
-    </DataCard.Root>
+        />}
+      />
+          </DataCard.Root>
   );
 }
