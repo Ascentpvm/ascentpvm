@@ -1,5 +1,6 @@
 "use client";
 import { ReactNode, useState, useCallback, useEffect } from "react";
+import { useWatch } from "react-hook-form";
 import { Box, Flex, IconButton, Text, Switch } from "@radix-ui/themes";
 import Image from "next/image";
 import Link from "next/link";
