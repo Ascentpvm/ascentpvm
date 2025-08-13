@@ -1,6 +1,6 @@
 'use client';
 
-import { Text, Flex } from '@radix-ui/themes';
+import { Text } from '@radix-ui/themes';
 import { DataCard } from '../data-card';
 import { Input } from '../input';
 
