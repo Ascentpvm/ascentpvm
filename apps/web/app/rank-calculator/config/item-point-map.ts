@@ -97,9 +97,9 @@ export const itemPointOverrides: Partial<Record<CollectionLogItemName, number>> 
   'Rock golem': 0,
   'Rocky': 0,
   'Dragon chainbody': 4,
-  'Avernic treads': 0, // TODO: Remove overrides
-  'Eye of ayak (uncharged)': 0,
-  'Mokhaiotl cloth': 0,
+  'Avernic treads': 20,
+  'Eye of ayak (uncharged)': 20,
+  'Mokhaiotl cloth': 20,
   'Dom': 0,
   'Abyssal orphan': 0,
   'Ikkle hydra': 0,
