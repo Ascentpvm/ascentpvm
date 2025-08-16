@@ -130,7 +130,7 @@ export async function approveSubmission({
     applicableAchievementDiscordRoles,
   ).some(Boolean);
 
-  if (rankStructure === 'Standard') {
+  if (rankStructure === 'Standard' || rankStructure === 'Clog') {
     await discordBotClient.put(
       Routes.channelMessageOwnReaction(
         serverConstants.discord.channelId,
