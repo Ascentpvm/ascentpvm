@@ -87,6 +87,7 @@ export const TempleOSRSPlayerStats = z.object({
     'Chambers of Xeric Challenge Mode': z.number().nonnegative(),
     'Theatre of Blood': z.number().nonnegative(),
     'Tombs of Amascut Expert': z.number().nonnegative(),
+    'Theatre of Blood Hard Mode': z.number().nonnegative(),
   }),
 });
 

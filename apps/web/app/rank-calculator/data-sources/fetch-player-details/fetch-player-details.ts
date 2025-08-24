@@ -199,10 +199,10 @@ export async function fetchPlayerDetails(
       Clue_elite: eliteClueCount = null,
       Clue_master: masterClueCount = null,
       'Chambers of Xeric Challenge Mode': chambersCmKillCount = null,
-      'Theatre of Blood': tobKillCount = null,
       'Tombs of Amascut Expert': toaExpertKillCount = null,
       Slayer_level: slayerLevel = null,
     } = templePlayerStats ?? {};
+    const tobKillCount = templePlayerStats ? templePlayerStats['Theatre of Blood'] + templePlayerStats['Theatre of Blood Hard Mode'] : 0;
     const { ehb, ehp } = calculateEfficiencyData(templePlayerStats);
 
     const { total_collections_finished: templeCollectionLogCount = null, ehc: templeEfficientHoursClogged = null } =
