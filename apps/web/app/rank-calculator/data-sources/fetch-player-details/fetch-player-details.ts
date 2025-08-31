@@ -202,7 +202,7 @@ export async function fetchPlayerDetails(
       'Tombs of Amascut Expert': toaExpertKillCount = null,
       Slayer_level: slayerLevel = null,
     } = templePlayerStats ?? {};
-    const tobKillCount = templePlayerStats ? templePlayerStats['Theatre of Blood'] + templePlayerStats['Theatre of Blood Hard Mode'] : 0;
+    const tobKillCount = templePlayerStats ? templePlayerStats['Theatre of Blood'] + templePlayerStats['Theatre of Blood Challenge Mode'] : 0;
     const { ehb, ehp } = calculateEfficiencyData(templePlayerStats);
 
     const { total_collections_finished: templeCollectionLogCount = null, ehc: templeEfficientHoursClogged = null } =
