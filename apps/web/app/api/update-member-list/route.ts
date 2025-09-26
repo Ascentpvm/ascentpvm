@@ -4,6 +4,16 @@ import { clientConstants } from '@/config/constants.client';
 import { GroupUpdateRequest } from '@/app/schemas/temple-api';
 import { serverConstants } from '@/config/constants.server';
 import { ClanExport } from '@/app/schemas/inactivity-checker';
+import mysql from 'mysql2/promise'
+
+async function getDbConnection() {
+  return mysql.createConnection({
+    host: process.env.DB_HOST!,
+    user: process.env.DB_USER!,
+    password: process.env.DB_PASS!,
+    database: process.env.DB_NAME!,
+  });
+}
 
 export async function POST(request: NextRequest) {
   const updateTemple =
@@ -42,6 +52,27 @@ export async function POST(request: NextRequest) {
       method: 'POST',
       body: new URLSearchParams(templeUpdateData),
     });
+  }
+
+  // --- INSERT INTO MYSQL ---
+  try {
+    const conn = await getDbConnection();
+
+    // Example: clear table + reinsert members
+    await conn.execute('DELETE FROM members');
+
+    const insertPromises = body.clanMemberMaps.map((member) =>
+      conn.execute(
+        'INSERT INTO members (rsn, rank) VALUES (?, ?)',
+        [member.rsn, member.rank]
+      )
+    );
+
+    await Promise.all(insertPromises);
+    await conn.end();
+  } catch (err) {
+    console.error('DB insert failed:', err);
+    return NextResponse.json({ success: false, error: 'DB insert failed' }, { status: 500 });
   }
 
   await Promise.all([
