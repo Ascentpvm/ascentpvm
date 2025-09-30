@@ -12,6 +12,7 @@ const ClientConfigSchema = z.object({
   }),
   wiki: z.object({
     baseUrl: z.literal('https://oldschool.runescape.wiki'),
+    userAgent: z.literal('Ascent-pvm-Rank-Calculator (Discord @vonov)')
   }),
   wikiSync: z.object({
     baseUrl: z.literal('https://sync.runescape.wiki'),
@@ -32,6 +33,7 @@ export const clientConstants = ClientConfigSchema.parse({
   },
   wiki: {
     baseUrl: 'https://oldschool.runescape.wiki',
+    userAgent: 'Ascent-pvm-Rank-Calculator (Discord @vonov)'
   },
   wikiSync: {
     baseUrl: 'https://sync.runescape.wiki',
