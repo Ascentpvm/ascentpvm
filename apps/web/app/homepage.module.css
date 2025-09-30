@@ -1,0 +1,162 @@
+@value primaryGold: #ffd700; /* Gold */
+@value secondaryBlue: #2e86c1; /* Original button blue */
+@value darkBackground: rgba(0, 0, 0, 0.85); /* Slightly darker, less transparent background */
+@value lightText: #e0e0e0; /* Off-white for body text */
+@value greyText: #b0b0b0; /* Lighter grey for subtle text */
+@value borderColor: #444; /* Dark grey for subtle borders */
+@value boxShadowColor: rgba(0, 0, 0, 0.5);
+@value transitionSpeed: 0.3s ease;
+
+.outer-container {
+  font-family: 'Open Sans', sans-serif; /* Modern sans-serif for body */
+  margin: 0;
+  padding: 0;
+  color: lightText;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to the start, allow content to flow down */
+  min-height: 100vh;
+  padding: 2rem 1rem; /* Padding for small screens */
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.container {
+  max-width: 880px; /* Slightly wider container */
+  width: 100%;
+  background-color: darkBackground;
+  padding: 2.5rem; /* More padding for a less cramped feel */
+  border-radius: 10px; /* Slightly more rounded corners */
+  box-shadow: 0 10px 30px boxShadowColor; /* More pronounced shadow */
+  text-align: center;
+  margin-top: 2rem; /* Initial margin from the top */
+  border: 1px solid borderColor; /* Subtle border */
+  overflow: hidden; /* Clear any floats/margins from children */
+}
+
+.heading-1,
+.heading-2 {
+  font-family: 'Cinzel', serif; /* More elegant, thematic font for headings */
+  color: primaryGold;
+  margin-top: 0;
+  margin-bottom: 1.5rem; /* Consistent spacing below headings */
+  text-transform: uppercase; /* A classic OSRS text feel */
+  letter-spacing: 0.05em; /* Slightly spaced out letters */
+  font-weight: 700; /* Bolder text for emphasis */
+}
+
+.heading-1 {
+  font-size: 2.8rem; /* Larger main heading */
+}
+
+.heading-2 {
+  font-size: 2.2rem; /* Slightly smaller section headings */
+  border-bottom: 2px solid primaryGold; /* Underline for section headings */
+  padding-bottom: 0.5rem;
+  display: inline-block; /* Make border only as wide as text */
+}
+
+.paragraph {
+  color: greyText;
+  line-height: 1.7; /* Better readability */
+  margin-bottom: 1.5rem; /* Consistent spacing below paragraphs */
+}
+
+.button-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex; /* Use flexbox for button layout */
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+  justify-content: center; /* Center buttons horizontally */
+  gap: 1.5rem; /* Space between buttons */
+}
+
+.button {
+  display: inline-block;
+  padding: 0.8rem 2.2rem; /* Larger padding for better touch targets */
+  background-color: secondaryBlue;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px; /* Slightly more rounded */
+  cursor: pointer;
+  transition:
+    background-color transitionSpeed,
+    transform transitionSpeed,
+    box-shadow transitionSpeed;
+  font-weight: 600; /* Bolder text for buttons */
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Subtle button shadow */
+}
+
+.button:hover {
+  background-color: #2671ae; /* Darker blue on hover */
+  transform: translateY(-3px); /* Subtle lift effect */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.button.apply-here {
+  background-color: #4caf50; /* A distinct green for "Apply" */
+}
+
+.button.apply-here:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.about-section,
+.leadership,
+.apply-section {
+  /* All sections now share this top margin and border */
+  margin-top: 3.5rem; /* More space between sections */
+  padding-top: 2rem; /* Padding inside sections */
+  border-top: 1px dashed borderColor; /* Dashed line separator */
+}
+
+.leadership ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.leadership ul li {
+  margin-bottom: 0.8rem;
+  font-size: 1.05rem;
+}
+
+.leadership strong {
+  color: primaryGold; /* Make titles stand out */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .heading-1 {
+    font-size: 2.2rem;
+  }
+  .heading-2 {
+    font-size: 1.8rem;
+  }
+  .container {
+    padding: 1.5rem;
+    margin: 1rem; /* Reduce margin on smaller screens */
+  }
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically on small screens */
+    align-items: stretch; /* Make buttons full width */
+  }
+  .button {
+    width: 100%; /* Full width buttons */
+    margin: 0.5rem 0; /* Adjust vertical margin */
+  }
+}
+
+@media (max-width: 480px) {
+  .heading-1 {
+    font-size: 1.8rem;
+  }
+  .heading-2 {
+    font-size: 1.5rem;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
