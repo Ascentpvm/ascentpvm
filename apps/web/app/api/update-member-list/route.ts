@@ -4,7 +4,7 @@ import { clientConstants } from '@/config/constants.client';
 import { GroupUpdateRequest } from '@/app/schemas/temple-api';
 import { serverConstants } from '@/config/constants.server';
 import { ClanExport, ClanMemberList } from '@/app/schemas/inactivity-checker';
-import { supabase } from '@/lib/supabase';
+import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   const updateTemple =
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
   console.log('Saving member list to Supabase');
 
   // Create a new update record
-  const { data: updateRecord, error: updateError } = await supabase
+  const { data: updateRecord, error: updateError } = await supabaseAdmin
     .from('clan_updates')
     .insert({
       updated_at: new Date().toISOString(),
@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
   }
 
   // Get all existing members
-  const { data: existingMembers } = await supabase
+  const { data: existingMembers } = await supabaseAdmin
     .from('clan_members')
     .select('rsn, last_left, is_active');
 
@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
   const currentTime = new Date().toISOString();
 
   // Upsert members from payload as active (preserves last_left if they're returning)
-  const { error: supabaseError } = await supabase
+  const { error: supabaseError } = await supabaseAdmin
     .from('clan_members')
     .upsert(
       memberList.map(member => {
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
     .filter(([rsn]) => !payloadRsns.has(rsn));
 
   for (const [, existing] of membersWhoLeft) {
-    await supabase
+    await supabaseAdmin
       .from('clan_members')
       .update({
         is_active: false,

@@ -21,6 +21,7 @@ const ServerConfigSchema = z.object({
   supabase: z.object({
     url: z.string(),
     anonKey: z.string(),
+    serviceRoleKey: z.string(),
   }),
 });
 
@@ -44,5 +45,6 @@ export const serverConstants = ServerConfigSchema.parse({
   supabase: {
     url: process.env.SUPABASE_URL,
     anonKey: process.env.SUPABASE_ANON_KEY,
+    serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
   },
 });
