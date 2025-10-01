@@ -56,17 +56,22 @@ export async function POST(request: NextRequest) {
 
   // Save members to Supabase
   console.log('Saving member list to Supabase');
+
+  // Delete all existing members first
+  await supabase.from('clan_members').delete().neq('rsn', '');
+
+  // Insert new member list
   const { error: supabaseError } = await supabase
     .from('clan_members')
-    .upsert(
+    .insert(
       memberList.map(member => ({
         rsn: member.rsn,
         rank: member.rank,
         joined_date: member.joinedDate,
         updated_at: new Date().toISOString(),
-      })),
-      { onConflict: 'rsn' }
+      }))
     );
+    
 
   if (supabaseError) {
     console.error('Error saving to Supabase:', supabaseError);
