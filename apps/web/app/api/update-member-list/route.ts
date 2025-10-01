@@ -60,6 +60,9 @@ export async function POST(request: NextRequest) {
   // Delete all existing members first
   await supabase.from('clan_members').delete().neq('rsn', '');
 
+  // Generate a unique ID for this batch update
+  const updateId = crypto.randomUUID();
+
   // Insert new member list
   const { error: supabaseError } = await supabase
     .from('clan_members')
@@ -69,6 +72,7 @@ export async function POST(request: NextRequest) {
         rank: member.rank,
         joined_date: member.joinedDate,
         updated_at: new Date().toISOString(),
+        update_id: updateId,
       }))
     );
     
