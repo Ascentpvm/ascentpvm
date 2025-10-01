@@ -50,7 +50,7 @@ import dedent from 'dedent';
 export const publishRankSubmissionAction = authActionClient
   .metadata({ actionName: 'publish-rank-submission' })
   .bindArgsSchemas<
-    [currentRank: Zod.ZodOptional<typeof Rank>, playerName: typeof PlayerName]
+    [currentRank: z.ZodOptional<typeof Rank>, playerName: typeof PlayerName]
   >([Rank.optional(), PlayerName])
   .schema(z.object({ rank: Rank, totalPoints: z.number().nonnegative() }))
   .action(
