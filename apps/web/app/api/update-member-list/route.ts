@@ -57,11 +57,26 @@ export async function POST(request: NextRequest) {
   // Save members to Supabase
   console.log('Saving member list to Supabase');
 
+    // Create a new update record
+  const { data: updateRecord, error: updateError } = await supabase
+    .from('clan_updates')
+    .insert({
+      updated_at: new Date().toISOString(),
+    })
+    .select('id')
+    .single();
+
+  if (updateError || !updateRecord) {
+    console.error('Error creating update record:', updateError);
+    return NextResponse.json(
+      { success: false, error: 'Failed to create update record' },
+      { status: 500 }
+    );
+  }
+
   // Delete all existing members first
   await supabase.from('clan_members').delete().neq('rsn', '');
 
-  // Generate a unique ID for this batch update
-  const updateId = crypto.randomUUID();
 
   // Insert new member list
   const { error: supabaseError } = await supabase
@@ -72,7 +87,7 @@ export async function POST(request: NextRequest) {
         rank: member.rank,
         joined_date: member.joinedDate,
         updated_at: new Date().toISOString(),
-        update_id: updateId,
+        update_id: updateRecord.id as string,
       }))
     );
     
