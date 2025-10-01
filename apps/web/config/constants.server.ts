@@ -18,6 +18,11 @@ const ServerConfigSchema = z.object({
     guildId: z.string(),
     channelId: z.string(),
   }),
+  supabase: z.object({
+    url: z.string(),
+    anonKey: z.string(),
+    serviceRoleKey: z.string(),
+  }),
 });
 
 export const serverConstants = ServerConfigSchema.parse({
@@ -36,5 +41,10 @@ export const serverConstants = ServerConfigSchema.parse({
     token: process.env.DISCORD_TOKEN,
     guildId: process.env.DISCORD_GUILD_ID,
     channelId: process.env.DISCORD_CHANNEL_ID,
+  },
+  supabase: {
+    url: process.env.SUPABASE_URL,
+    anonKey: process.env.SUPABASE_ANON_KEY,
+    serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
   },
 });
