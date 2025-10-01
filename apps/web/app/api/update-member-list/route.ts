@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabase';
 export async function POST(request: NextRequest) {
   const updateTemple =
     request.nextUrl.searchParams.get('updateTemple') ?? 'true';
-  const requestBody = await request.json();
+  const requestBody = await request.json() as unknown;
   
   // Try to parse as direct member list array first, then fall back to ClanExport format
   let memberList;
