@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
   // Save members to Supabase
   console.log('Saving member list to Supabase');
   const { error: supabaseError } = await supabase
-    .from('members')
+    .from('clan_members')
     .upsert(
       memberList.map(member => ({
         rsn: member.rsn,
