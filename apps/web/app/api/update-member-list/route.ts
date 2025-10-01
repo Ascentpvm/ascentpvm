@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
   // Save members to Supabase
   console.log('Saving member list to Supabase');
 
-    // Create a new update record
+  // Create a new update record
   const { data: updateRecord, error: updateError } = await supabase
     .from('clan_updates')
     .insert({
@@ -74,23 +74,61 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  // Delete all existing members first
+  // Get all existing members to preserve history
+  const { data: existingMembers } = await supabase
+    .from('clan_members')
+    .select('rsn, rank, joined_date, last_left');
+
+  const existingMemberMap = new Map(
+    (existingMembers as { rsn: string; rank: string; joined_date: string; last_left: string | null }[] | null)?.map(m => [m.rsn.toLowerCase(), m]) ?? []
+  );
+
+  const payloadRsns = new Set(memberList.map(m => m.rsn.toLowerCase()));
+  const currentTime = new Date().toISOString();
+
+  // Delete all existing records (we'll reinsert with updated status)
   await supabase.from('clan_members').delete().neq('rsn', '');
 
-
-  // Insert new member list
+  // Insert members from payload as active
   const { error: supabaseError } = await supabase
     .from('clan_members')
     .insert(
-      memberList.map(member => ({
-        rsn: member.rsn,
-        rank: member.rank,
-        joined_date: member.joinedDate,
-        updated_at: new Date().toISOString(),
-        update_id: updateRecord.id as string,
-      }))
+      memberList.map(member => {
+        const existing = existingMemberMap.get(member.rsn.toLowerCase());
+        return {
+          rsn: member.rsn,
+          rank: member.rank,
+          joined_date: member.joinedDate,
+          updated_at: currentTime,
+          update_id: updateRecord.id as string,
+          is_active: true,
+          last_left: existing?.last_left ?? null,
+        };
+      })
     );
-    
+
+  // Insert members who left as inactive
+  const membersWhoLeft = Array.from(existingMemberMap.entries())
+    .filter(([rsn]) => !payloadRsns.has(rsn))
+    .map(([, existing]) => ({
+      rsn: existing.rsn,
+      rank: existing.rank,
+      joined_date: existing.joined_date,
+      updated_at: currentTime,
+      update_id: updateRecord.id as string,
+      is_active: false,
+      last_left: existing.last_left ?? currentTime,
+    }));
+
+  if (membersWhoLeft.length > 0) {
+    const { error: inactiveError } = await supabase
+      .from('clan_members')
+      .insert(membersWhoLeft);
+
+    if (inactiveError) {
+      console.error('Error saving inactive members:', inactiveError);
+    }
+  }
 
   if (supabaseError) {
     console.error('Error saving to Supabase:', supabaseError);
