@@ -3,15 +3,25 @@ import { NextRequest, NextResponse } from 'next/server';
 import { clientConstants } from '@/config/constants.client';
 import { GroupUpdateRequest } from '@/app/schemas/temple-api';
 import { serverConstants } from '@/config/constants.server';
-import { ClanExport } from '@/app/schemas/inactivity-checker';
+import { ClanExport, ClanMemberList } from '@/app/schemas/inactivity-checker';
+import { supabaseAdmin } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   const updateTemple =
     request.nextUrl.searchParams.get('updateTemple') ?? 'true';
-  const body = ClanExport.parse(await request.json());
+  const requestBody = await request.json() as unknown;
+  
+  // Try to parse as direct member list array first, then fall back to ClanExport format
+  let memberList;
+  try {
+    memberList = ClanMemberList.parse(requestBody);
+  } catch {
+    const body = ClanExport.parse(requestBody);
+    memberList = body.clanMemberMaps;
+  }
 
   if (updateTemple === 'true') {
-    const { members, leaders } = body.clanMemberMaps.reduce(
+    const { members, leaders } = memberList.reduce(
       (acc, member) => {
         if (clientConstants.ranks.leaders.includes(member.rank)) {
           return { ...acc, leaders: acc.leaders.concat(member.rsn) };
@@ -44,9 +54,84 @@ export async function POST(request: NextRequest) {
     });
   }
 
+  // Save members to Supabase
+  console.log('Saving member list to Supabase');
+
+  // Create a new update record
+  const { data: updateRecord, error: updateError } = await supabaseAdmin
+    .from('clan_updates')
+    .insert({
+      updated_at: new Date().toISOString(),
+    })
+    .select('id')
+    .single();
+
+  if (updateError || !updateRecord) {
+    console.error('Error creating update record:', updateError);
+    return NextResponse.json(
+      { success: false, error: 'Failed to create update record' },
+      { status: 500 }
+    );
+  }
+
+  // Get all existing members
+  const { data: existingMembers } = await supabaseAdmin
+    .from('clan_members')
+    .select('rsn, last_left, is_active');
+
+  const existingMemberMap = new Map(
+    (existingMembers as { rsn: string; last_left: string | null; is_active: boolean }[] | null)?.map(m => [m.rsn.toLowerCase(), m]) ?? []
+  );
+
+  const payloadRsns = new Set(memberList.map(m => m.rsn.toLowerCase()));
+  const currentTime = new Date().toISOString();
+
+  // Upsert members from payload as active (preserves last_left if they're returning)
+  const { error: supabaseError } = await supabaseAdmin
+    .from('clan_members')
+    .upsert(
+      memberList.map(member => {
+        const existing = existingMemberMap.get(member.rsn.toLowerCase());
+        return {
+          rsn: member.rsn,
+          rank: member.rank,
+          joined_date: member.joinedDate,
+          updated_at: currentTime,
+          update_id: updateRecord.id as string,
+          is_active: true,
+          last_left: existing?.last_left ?? null,
+        };
+      }),
+      { onConflict: 'rsn' }
+    );
+
+  // Mark members who left as inactive (set last_left only if not already set)
+  const membersWhoLeft = Array.from(existingMemberMap.entries())
+    .filter(([rsn]) => !payloadRsns.has(rsn));
+
+  for (const [, existing] of membersWhoLeft) {
+    await supabaseAdmin
+      .from('clan_members')
+      .update({
+        is_active: false,
+        updated_at: currentTime,
+        update_id: updateRecord.id as string,
+        last_left: existing.last_left ?? currentTime,
+      })
+      .eq('rsn', existing.rsn);
+  }
+
+  if (supabaseError) {
+    console.error('Error saving to Supabase:', supabaseError);
+    return NextResponse.json(
+      { success: false, error: 'Failed to save to database' },
+      { status: 500 }
+    );
+  }
+
   await Promise.all([
     // Save the member list to the Vercel blob store to use later
-    put('members.json', JSON.stringify(body.clanMemberMaps), {
+    put('members.json', JSON.stringify(memberList), {
       access: 'public',
     }),
     ...(updateTemple

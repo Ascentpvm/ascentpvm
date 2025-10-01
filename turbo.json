@@ -10,8 +10,10 @@
         "AUTH_DISCORD_SECRET",
         "DISCORD_TOKEN",
         "REDIS_RETRIES",
+        "REDIS_URL",
         "SENTRY_AUTH_TOKEN",
         "DISCORD_CHANNEL_ID",
+        "DISCORD_RANK_ID",
         "AUTH_REDIRECT_PROXY_URL",
         "KV_URL",
         "KV_REST_API_READ_ONLY_TOKEN",
@@ -23,7 +25,10 @@
         "ZEPLO_API_KEY",
         "ZEPLO_URL",
         "TEMPLE_PRIVATE_GROUP",
-        "DISCORD_GUILD_ID"
+        "DISCORD_GUILD_ID",
+        "SUPABASE_URL",
+        "SUPABASE_ANON_KEY",
+        "SUPABASE_SERVICE_ROLE_KEY"
       ],
       "outputs": [".next/**", "!.next/cache/**"]
     },
