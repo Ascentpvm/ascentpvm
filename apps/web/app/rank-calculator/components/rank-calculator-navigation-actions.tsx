@@ -88,9 +88,18 @@ export function RankCalculatorNavigationActions({
           </DropdownMenu.Trigger>
           <DropdownMenu.Content color="gray" variant="soft">
             <DropdownMenu.Item
+              disabled={!rank || rank === currentRank || isDirty}
               onClick={() => {
-                if (!rank){
+                if (!rank) {
                   toast.error('You are not eligible for a rank!');
+                  return;
+                }
+                if (rank === currentRank) {
+                  toast.error('You already have this rank!');
+                  return;
+                }
+                if (isDirty) {
+                  toast.error('Please save your data first!');
                   return;
                 }
                 void handleToastUpdates(
