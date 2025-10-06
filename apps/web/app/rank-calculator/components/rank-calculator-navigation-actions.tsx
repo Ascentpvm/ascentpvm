@@ -28,7 +28,7 @@ export function RankCalculatorNavigationActions({
   isActionActive,
 }: RankCalculatorNavigationActionsProps) {
   const { reset } = useFormContext<RankCalculatorSchema>();
-  const { isValid, isDirty, isSubmitting } =
+  const { isValid, isDirty, isSubmitting, isSubmitSuccessful } =
     useFormState<RankCalculatorSchema>();
   const [, startResetTransition] = useTransition();
   const [, startDeleteDialogTransition] = useTransition();
@@ -89,7 +89,7 @@ export function RankCalculatorNavigationActions({
           <DropdownMenu.Content color="gray" variant="soft">
             <DropdownMenu.Item
               onClick={() => {
-                if (isDirty) {
+                if (isDirty || !isSubmitSuccessful) {
                   toast.error('Please save your data first!');
 
                   return;
